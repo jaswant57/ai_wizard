@@ -1,0 +1,27 @@
+{
+  "name": "ai-wizard",
+  "version": "1.0.0",
+  "dependencies": {
+    "@langchain/core": "^0.3.17",
+    "@langchain/langgraph": "^0.2.20",
+    "@langchain/openai": "^0.3.11",
+    "@langchain/pinecone": "^0.0.3",
+    "@pinecone-database/pinecone": "^2.0.1",
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "langchain": "^0.2.0",
+    "zod": "^3.23.8"
+  },
+  "scripts": {
+    "build": "tsc",
+    "vercel-build": "tsc"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.8.7",
+    "typescript": "^5.6.3"
+  }
+}
