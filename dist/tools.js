@@ -54,7 +54,14 @@ function createDynamicSchema(messages) {
             inputObjArray.forEach((inputObj) => {
                 let inputType = inputObj.type;
                 // Map specific input types to "string" type
-                if (["select", "dynamicSelect", "date", "attachment", "text"].includes(inputType)) {
+                if ([
+                    "select",
+                    "dynamicSelect",
+                    "date",
+                    "attachment",
+                    "text",
+                    "sn-message",
+                ].includes(inputType)) {
                     inputType = "string";
                 }
                 if (inputType === "message") {
