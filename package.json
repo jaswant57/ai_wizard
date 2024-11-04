@@ -16,7 +16,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "vercel-build": "tsc"
+    "vercel-build": "tsc",
+    "start": "node dist/index.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
