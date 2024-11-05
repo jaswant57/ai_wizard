@@ -16,7 +16,7 @@ dotenv.config({
 });
 
 let headers = {
-  Authorization: `Bearer ${process.env.TEXAU_API_KEy}`,
+  Authorization: `Bearer ${process.env.TEXAU_API_KEY}`,
   "X-TexAu-Context":
     '{"orgUserId":"66629bd200b34c7c054971ba","workspaceId":"66629be100b34c7c054971fc"}',
 };
