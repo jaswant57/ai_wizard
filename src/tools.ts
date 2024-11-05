@@ -9,10 +9,14 @@ import { tool } from "@langchain/core/tools";
 import axios from "axios";
 import { z } from "zod";
 import { Input } from "./utils/interface";
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: "./.env",
+});
 
 let headers = {
-  Authorization:
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InN1YiI6ImE2ZDAwYTQwLTM1NjAtNGNhOS05ZWJlLTk3ZThiN2ExOTg3OSIsImVtYWlsIjoiai5yYWpwdXRAdGV4YXUuYXBwIiwidXNlcklkIjoiNjY2MjliYmUwMGIzNGM3YzA1NDk3MWFmIiwib3JnYW5pc2F0aW9uSWQiOiI2NjYyOWJkMjAwYjM0YzdjMDU0OTcxYjYifSwiaWF0IjoxNzMwNjk4OTg2fQ.HDlVKbVra1IsZv8Z2HAeUDqH08_MIHWVSJGGKE1KTmM",
+  Authorization: `Bearer ${process.env.TEXAU_API_KEy}`,
   "X-TexAu-Context":
     '{"orgUserId":"66629bd200b34c7c054971ba","workspaceId":"66629be100b34c7c054971fc"}',
 };
@@ -65,9 +69,14 @@ export function createDynamicSchema(
 
         // Map specific input types to "string" type
         if (
-          ["select", "dynamicSelect", "date", "attachment", "text"].includes(
-            inputType,
-          )
+          [
+            "select",
+            "dynamicSelect",
+            "date",
+            "attachment",
+            "text",
+            "sn-message",
+          ].includes(inputType)
         ) {
           inputType = "string";
         }
