@@ -18,6 +18,8 @@ export const promptTemplate = PromptTemplate.fromTemplate(
 
     Supported Platforms: LinkedIn, Sales Navigator, Recruiter Lite, Product Hunt, YouTube, Google, Email, Twitter/X, Reddit, Websites, Pinterest, Slack, GitHub, TexAu Agents.
 
+    User First Name: {firstName}
+    User Last Name: {lastName}
     Query: {query}
     Context:
     {context}
@@ -38,7 +40,7 @@ Instructions while creating automation inputs:
   Example Date Format: 2024-11-02T10:10:00Z
 3) Dynamic Select Input Handling:
   if the input requires a dynamic select, set the input as empty string.
-
+4) Use firstName and lastName if provided to greet the user formally. 
 `;
 
 export const sys_message = new SystemMessage(sys_prompt);

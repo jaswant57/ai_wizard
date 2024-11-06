@@ -19,6 +19,12 @@ const StateAnnotation = Annotation.Root({
   messages: Annotation<BaseMessage[]>({
     reducer: (x, y) => x.concat(y),
   }),
+  firstName: Annotation<string>({
+    reducer: (x, y) => y ?? x ?? "",
+  }),
+  lastName: Annotation<string>({
+    reducer: (x, y) => y ?? x ?? "",
+  }),
 });
 
 const tools = [callAutomationApi];
@@ -45,10 +51,17 @@ function shouldContinue(state: typeof StateAnnotation.State) {
 }
 
 async function preparePrompt(state: typeof StateAnnotation.State) {
+  console.log(state);
   return {
     messages: [
       new SystemMessage(
-        (await retrieverChain(state["messages"][0].content.toString())).value,
+        (
+          await retrieverChain(
+            state["messages"][state["messages"].length - 1].content.toString(),
+            state.firstName,
+            state.lastName,
+          )
+        ).value,
       ),
     ],
   };
@@ -57,6 +70,17 @@ async function preparePrompt(state: typeof StateAnnotation.State) {
 async function call_model(state: typeof StateAnnotation.State) {
   return {
     messages: [await llm_with_tools.invoke(state["messages"])],
+  };
+}
+
+async function setUserInfo(state: typeof StateAnnotation.State) {
+  const { query, firstName, lastName } = JSON.parse(
+    state["messages"][0].content.toString(),
+  );
+  return {
+    messages: new HumanMessage(query),
+    firstName,
+    lastName,
   };
 }
 
@@ -79,20 +103,35 @@ function callStructuredOutputModel(
 const workflow = new StateGraph(StateAnnotation)
   .addNode("agent", call_model)
   .addNode("tools", toolNode)
+  .addNode("setUserInfo", setUserInfo)
   .addNode("preparePrompt", preparePrompt)
   .addConditionalEdges("agent", shouldContinue)
-  .addEdge("__start__", "preparePrompt")
+  .addEdge("__start__", "setUserInfo")
+  .addEdge("setUserInfo", "preparePrompt")
   .addEdge("preparePrompt", "agent")
   .addEdge("tools", "__end__");
 
 const app = workflow.compile();
 
-export const agent = async (query: string): Promise<{}> => {
+export const agent = async (
+  query: string,
+  firstName?: string,
+  lastName?: string,
+): Promise<{}> => {
+  const inputObj = {
+    query,
+    firstName,
+    lastName,
+  };
+
+  const inputs = JSON.stringify(inputObj);
   const output = await app.invoke({
-    messages: [new HumanMessage(query)],
+    messages: [new HumanMessage(inputs)],
   });
-  //   console.log("Output: ", output);
+  // console.log('Output: ', output);
   const structuredOutput = await callStructuredOutputModel(output["messages"]);
-  //   console.log("Structured Output: ", structuredOutput);
+
   return structuredOutput;
 };
+
+// agent("I want to send an auto message in Sales navigator");

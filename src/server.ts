@@ -31,7 +31,11 @@ app.post("/ai-wizard", async (req, res) => {
       return;
     }
 
-    const response = await agent(req.body.query);
+    let response = await agent(
+      req.body.query,
+      req.body.firstName,
+      req.body.lastName,
+    );
 
     res.json({
       success: true,

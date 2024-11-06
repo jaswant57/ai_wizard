@@ -122,9 +122,14 @@ export function createDynamicSchema(
             type: "string",
             description: "Automation Id of the automation",
           },
+          text: {
+            type: "string",
+            description:
+              "A greeting text explaining the user about the automation",
+          },
           ...properties,
         },
-        required: ["automationId"],
+        required: ["automationId", "text"],
       },
     },
     required: ["actionType", "inputs"],
