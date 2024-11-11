@@ -76,6 +76,7 @@ export function createDynamicSchema(
             "attachment",
             "text",
             "sn-message",
+            "file",
           ].includes(inputType)
         ) {
           inputType = "string";

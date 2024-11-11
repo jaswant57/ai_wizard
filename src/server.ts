@@ -2,6 +2,8 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { agent } from "./main";
+import { initializeRetriever } from "./vectorIndex";
+import { isRunnableToolLike } from "@langchain/core/utils/function_calling";
 
 dotenv.config({
   path: "./.env",
@@ -48,6 +50,18 @@ app.post("/ai-wizard", async (req, res) => {
       error: "An internal server error occurred.",
       details: err,
     });
+  }
+});
+
+app.post("/retriever", async (req, res) => {
+  try {
+    const retriever = await initializeRetriever();
+    const docs = await retriever.invoke(req.body.query);
+    // const names = res.json(docs);
+    res.json(docs);
+  } catch (err) {
+    console.log(err);
+    res.json(err);
   }
 });
 
