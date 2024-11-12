@@ -123,6 +123,11 @@ export function createDynamicSchema(
             type: "string",
             description: "Automation Id of the automation",
           },
+          source: {
+            type: "string",
+            description: "Source of the input data",
+            enum: ["direct-input", "csv", "google-sheet"],
+          },
           text: {
             type: "string",
             description:

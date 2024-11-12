@@ -4,6 +4,7 @@ import cors from "cors";
 import { agent } from "./main";
 import { initializeRetriever } from "./vectorIndex";
 import { isRunnableToolLike } from "@langchain/core/utils/function_calling";
+import { getAutomationNameFromId } from "./utils/helper";
 
 dotenv.config({
   path: "./.env",
@@ -38,10 +39,19 @@ app.post("/ai-wizard", async (req, res) => {
       req.body.firstName,
       req.body.lastName,
     );
-
+    let name = "";
+    // @ts-ignore
+    if (response?.actionType) {
+      // @ts-ignore
+      const id = response.inputs.automationId;
+      name = await getAutomationNameFromId(id);
+    }
     res.json({
       success: true,
       response,
+      dev: {
+        name,
+      },
     });
   } catch (err) {
     console.error("Error:", err);
@@ -70,3 +80,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+// Linkedin, Recruiter Lite, Google, Youtube, Email, Product Hunt, Reddit, Website, Github, Pinterest,  TexAu Agents
+// Sales Nav, Twitter, Slack,
