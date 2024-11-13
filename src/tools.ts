@@ -135,7 +135,7 @@ export function createDynamicSchema(
           },
           ...properties,
         },
-        required: ["automationId", "text"],
+        required: ["automationId", "text", "source"],
       },
     },
     required: ["actionType", "inputs"],
