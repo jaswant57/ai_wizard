@@ -41,9 +41,10 @@ Instructions for creating automation inputs:
 4) User Greeting:
    - Use firstName and lastName, if provided, to greet the user formally.
 
-5) Source Input:
-   - If the user specifies "csv" or "google-sheet" as the source, set the source value accordingly.
-   - Otherwise, set the source value to "direct-input".
+5) Input Source:
+   - Set the source to "csv" or "google-sheet" if specified by the user; otherwise, use "direct-input".
+   - Note: A request to export data to csv or google-sheet doesn’t imply the input source is csv or google-sheet.
+   - Don't add inputSource as google-sheet or csv just because user wants to export to csv or google-sheet  
 `;
 
 export const sys_message = new SystemMessage(sys_prompt);
