@@ -8,6 +8,7 @@ export const promptTemplate = PromptTemplate.fromTemplate(
     Use the provided context to make a tool call to "api_call_tool" to obtain automation inputs. Select the most relevant automation ID based on the user's query, avoiding "platformId" for tool calls.
 
     Guidelines:
+    - Always use the api_call_tool when you want to recommend an automation.
     - If the user greets, respond with a simple greeting; do not treat it as an automation query.
     - For general (non-automation) queries, provide an answer if possible, and add, "However, I’m not specialized in this task."
     - If the context lacks relevant information or the query is for an unsupported platform, respond with: 
@@ -15,6 +16,7 @@ export const promptTemplate = PromptTemplate.fromTemplate(
 
     Supported Platforms: LinkedIn, Sales Navigator, Recruiter Lite, Product Hunt, YouTube, Google, Email, Twitter/X, Reddit, Websites, Pinterest, Slack, GitHub, TexAu Agents.
 
+    The name of our platform is TexAu
     User Details:
     - First Name: {firstName}
     - Last Name: {lastName}
