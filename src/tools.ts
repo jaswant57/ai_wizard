@@ -4,20 +4,20 @@ import {
   HumanMessage,
   SystemMessage,
   ToolMessage,
-} from "@langchain/core/messages";
-import { tool } from "@langchain/core/tools";
-import axios from "axios";
-import { z } from "zod";
-import { Input } from "./utils/interface";
-import dotenv from "dotenv";
+} from '@langchain/core/messages';
+import { tool } from '@langchain/core/tools';
+import axios from 'axios';
+import { z } from 'zod';
+import { Input } from './utils/interface';
+import dotenv from 'dotenv';
 
 dotenv.config({
-  path: "./.env",
+  path: './.env',
 });
 
 let headers = {
   Authorization: `Bearer ${process.env.TEXAU_API_KEY}`,
-  "X-TexAu-Context":
+  'X-TexAu-Context':
     '{"orgUserId":"66629bd200b34c7c054971ba","workspaceId":"66629be100b34c7c054971fc"}',
 };
 
@@ -31,7 +31,7 @@ export const callAutomationApi = tool(
       const response = await axios.request({
         url: `https://v2-prod-api.texau.com/api/v1/public/automations/${input.automationId}`,
         headers: { ...headers },
-        method: "get",
+        method: 'get',
       });
 
       const inputs = response.data.data.inputs;
@@ -44,9 +44,9 @@ export const callAutomationApi = tool(
     }
   },
   {
-    name: "call_automation_api",
+    name: 'call_automation_api',
     description:
-      "Performs an Api Call which fetches the information about the inputs for an automation",
+      'Performs an Api Call which fetches the information about the inputs for an automation',
     schema: inputsSchema,
   },
 );
@@ -70,35 +70,35 @@ export function createDynamicSchema(
         // Map specific input types to "string" type
         if (
           [
-            "select",
-            "dynamicSelect",
-            "date",
-            "attachment",
-            "text",
-            "sn-message",
-            "file",
+            'select',
+            'dynamicSelect',
+            'date',
+            'attachment',
+            'text',
+            'sn-message',
+            'file',
           ].includes(inputType)
         ) {
-          inputType = "string";
+          inputType = 'string';
         }
 
-        if (inputType === "message") {
+        if (inputType === 'message') {
           properties[inputObj.name] = {
-            type: "object",
-            description: "",
+            type: 'object',
+            description: '',
             properties: {
               text: {
-                type: "string",
-                description: "Message to send",
-                default: "",
+                type: 'string',
+                description: 'Message to send',
+                default: '',
               },
             },
           };
         } else {
           properties[inputObj.name] = {
             type: inputType,
-            description: "",
-            default: "",
+            description: '',
+            default: '',
           };
         }
       });
@@ -106,39 +106,52 @@ export function createDynamicSchema(
   });
 
   const jsonSchema = {
-    title: "automation_inputs",
-    name: "automation_inputs",
-    description: "Inputs of the automation",
-    type: "object",
+    title: 'automation_inputs',
+    name: 'automation_inputs',
+    description: 'Inputs of the automation',
+    type: 'object',
     properties: {
       actionType: {
-        type: "string",
-        description: "actionType will always be automation",
+        type: 'string',
+        description: 'actionType will always be automation',
       },
       inputs: {
-        type: "object",
-        description: "Inputs of the automation",
+        type: 'object',
+        description: 'Inputs of the automation',
         properties: {
           automationId: {
-            type: "string",
-            description: "Automation Id of the automation",
+            type: 'string',
+            description: 'Automation Id of the automation',
           },
           inputSource: {
-            type: "string",
-            description: "Source of the input data",
-            enum: ["direct-input", "csv", "google-sheet"],
+            type: 'string',
+            description: 'Source of the input data',
+            enum: ['direct-input', 'csv', 'google-sheet'],
           },
           text: {
-            type: "string",
+            type: 'string',
             description:
-              "A greeting text explaining the user about the automation",
+              'A greeting text explaining the user about the automation',
+          },
+          otherRecommendedAutomations: {
+            type: 'array',
+            description: 'Other Recommended Automations',
+            items: {
+              type: 'string',
+              description: 'Automation ID of the recommended automation',
+            },
           },
           ...properties,
         },
-        required: ["automationId", "text", "inputSource"],
+        required: [
+          'automationId',
+          'text',
+          'inputSource',
+          'otherRecommendedAutomations',
+        ],
       },
     },
-    required: ["actionType", "inputs"],
+    required: ['actionType', 'inputs'],
   };
 
   return jsonSchema;

@@ -1,5 +1,5 @@
-import { SystemMessage } from "@langchain/core/messages";
-import { PromptTemplate } from "@langchain/core/prompts";
+import { SystemMessage } from '@langchain/core/messages';
+import { PromptTemplate } from '@langchain/core/prompts';
 
 export const promptTemplate = PromptTemplate.fromTemplate(
   `
@@ -47,6 +47,10 @@ Instructions for creating automation inputs:
    - Set the source to "csv" or "google-sheet" if specified by the user; otherwise, use "direct-input".
    - Note: A request to export data to csv or google-sheet doesn’t imply the input source is csv or google-sheet.
    - Don't add inputSource as google-sheet or csv just because user wants to export to csv or google-sheet  
+
+6) Other Recommeded Automations:
+   - Use the other automation id's from the context which were not used to make a tool call.
+
 `;
 
 export const sys_message = new SystemMessage(sys_prompt);
