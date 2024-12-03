@@ -13,7 +13,12 @@ import { MemorySaver, Annotation } from "@langchain/langgraph";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
 import { callAutomationApi, createDynamicSchema } from "./tools";
 import { retrieverChain } from "./chain";
-import { sys_message } from "./prompts";
+import {
+  data_store_sys_prompt,
+  intent_sys_prompt,
+  sys_message,
+} from "./prompts";
+import { intentClassificationSchema } from "./utils/helper";
 
 const StateAnnotation = Annotation.Root({
   messages: Annotation<BaseMessage[]>({
@@ -25,6 +30,7 @@ const StateAnnotation = Annotation.Root({
   lastName: Annotation<string>({
     reducer: (x, y) => y ?? x ?? "",
   }),
+  intent: Annotation<string>,
 });
 
 const tools = [callAutomationApi];
@@ -50,8 +56,16 @@ function shouldContinue(state: typeof StateAnnotation.State) {
   return "__end__";
 }
 
-async function preparePrompt(state: typeof StateAnnotation.State) {
-  console.log(state);
+function conditionalNode(state: typeof StateAnnotation.State) {
+  if (state.intent === "automation") {
+    return "automationPreparePrompt";
+  } else {
+    return "data-store";
+  }
+}
+
+async function automationPreparePrompt(state: typeof StateAnnotation.State) {
+  // console.log(state);
   return {
     messages: [
       new SystemMessage(
@@ -68,6 +82,7 @@ async function preparePrompt(state: typeof StateAnnotation.State) {
 }
 
 async function call_model(state: typeof StateAnnotation.State) {
+  // console.log(state);
   return {
     messages: [await llm_with_tools.invoke(state["messages"])],
   };
@@ -77,6 +92,7 @@ async function setUserInfo(state: typeof StateAnnotation.State) {
   const { query, firstName, lastName } = JSON.parse(
     state["messages"][0].content.toString(),
   );
+  // console.log(1);
   return {
     messages: new HumanMessage(query),
     firstName,
@@ -100,16 +116,49 @@ function callStructuredOutputModel(
   return structuredLlm.invoke([sys_message, ...output]);
 }
 
+async function intentClassification(state: typeof StateAnnotation.State) {
+  // async function intentClassification(state: string) {
+  // console.log(2);
+  const llm = new ChatOpenAI({
+    model: "gpt-4o-mini",
+    temperature: 0,
+    maxTokens: -1,
+    maxRetries: 2,
+  });
+
+  const structuredLlm = llm.withStructuredOutput(intentClassificationSchema);
+
+  const result = await structuredLlm.invoke([
+    intent_sys_prompt,
+    ...state["messages"],
+  ]);
+
+  return {
+    intent: result.intent,
+  };
+}
+
+async function dataStoreModel(state: typeof StateAnnotation.State) {
+  const result = await llm.invoke([
+    data_store_sys_prompt,
+    ...state["messages"],
+  ]);
+  return { messages: [result] };
+}
 const workflow = new StateGraph(StateAnnotation)
-  .addNode("agent", call_model)
+  .addNode("intent-classification", intentClassification)
+  .addNode("automation_agent", call_model)
   .addNode("tools", toolNode)
+  .addNode("data-store", dataStoreModel)
   .addNode("setUserInfo", setUserInfo)
-  .addNode("preparePrompt", preparePrompt)
-  .addConditionalEdges("agent", shouldContinue)
+  .addNode("automationPreparePrompt", automationPreparePrompt)
+  .addConditionalEdges("automation_agent", shouldContinue)
+  .addConditionalEdges("intent-classification", conditionalNode)
   .addEdge("__start__", "setUserInfo")
-  .addEdge("setUserInfo", "preparePrompt")
-  .addEdge("preparePrompt", "agent")
-  .addEdge("tools", "__end__");
+  .addEdge("setUserInfo", "intent-classification")
+  .addEdge("automationPreparePrompt", "automation_agent")
+  .addEdge("tools", "__end__")
+  .addEdge("data-store", "__end__");
 
 const app = workflow.compile();
 
@@ -128,10 +177,16 @@ export const agent = async (
   const output = await app.invoke({
     messages: [new HumanMessage(inputs)],
   });
-  // console.log('Output: ', output);
-  const structuredOutput = await callStructuredOutputModel(output["messages"]);
 
-  return structuredOutput;
+  if (output["intent"] === "automation") {
+    const structuredOutput: {} = await callStructuredOutputModel(
+      output["messages"],
+    );
+
+    return { ...structuredOutput, intent: output["intent"] };
+  } else {
+    return output;
+  }
 };
 
 // agent("I want to send an auto message in Sales navigator");

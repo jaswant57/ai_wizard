@@ -1,35 +1,35 @@
-import express, { Request, Response } from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import { agent } from './main';
-import { addDocs, initializeRetriever } from './vectorIndex';
-import { isRunnableToolLike } from '@langchain/core/utils/function_calling';
-import { getAutomationNameFromId } from './utils/helper';
+import express, { Request, Response } from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import { agent } from "./main";
+import { addDocs, initializeRetriever } from "./vectorIndex";
+import { isRunnableToolLike } from "@langchain/core/utils/function_calling";
+import { getAutomationNameFromId } from "./utils/helper";
 
 dotenv.config({
-  path: './.env',
+  path: "./.env",
 });
 
 const app = express();
 
 const corsOptions = {
-  origin: '*',
+  origin: "*",
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
-app.post('/ai-wizard', async (req, res) => {
+app.post("/ai-wizard", async (req, res) => {
   try {
     // Ensure req.body.query is defined
     if (!req.body.query) {
       res.status(400).json({
         success: false,
-        error: 'Query parameter is missing in the request body.',
+        error: "Query parameter is missing in the request body.",
       });
       return;
     }
@@ -39,12 +39,14 @@ app.post('/ai-wizard', async (req, res) => {
       req.body.firstName,
       req.body.lastName,
     );
-    let name = '';
+    // console.log(response);
+    let name = "";
     let automationDetails = [];
     let otherRecommendedAutomations = [];
-    let id = '';
+    let id = "";
+    let apiResponse: any = {};
     // @ts-ignore
-    if (response?.actionType) {
+    if (response?.intent === "automation") {
       // @ts-ignore
       id = response.inputs.automationId;
       otherRecommendedAutomations =
@@ -58,10 +60,23 @@ app.post('/ai-wizard', async (req, res) => {
           getAutomationNameFromId(automationId),
         ),
       );
+
+      apiResponse = response;
+      delete apiResponse.intent;
+    }
+    // @ts-ignore
+    else if (response?.intent === "data-store") {
+      // @ts-ignore
+      const messagesLength = response["messages"].length;
+      apiResponse["actionType"] = "data-store";
+      // @ts-ignore
+      apiResponse["dataStoreUrl"] =
+        // @ts-ignore
+        response["messages"][messagesLength - 1].content;
     }
     res.json({
       success: true,
-      response,
+      apiResponse,
       dev: {
         mainAutomation: { id, name },
         otherRecommendedAutomations: otherRecommendedAutomations.map(
@@ -73,16 +88,16 @@ app.post('/ai-wizard', async (req, res) => {
       },
     });
   } catch (err) {
-    console.error('Error:', err);
+    console.error("Error:", err);
     res.status(500).json({
       success: false,
-      error: 'An internal server error occurred.',
+      error: "An internal server error occurred.",
       details: err,
     });
   }
 });
 
-app.post('/retriever', async (req, res) => {
+app.post("/retriever", async (req, res) => {
   try {
     const retriever = await initializeRetriever();
     const docs = await retriever.invoke(req.body.query);
@@ -94,7 +109,7 @@ app.post('/retriever', async (req, res) => {
   }
 });
 
-app.post('/addDoc', async (req, res) => {
+app.post("/addDoc", async (req, res) => {
   try {
     const response = await addDocs(JSON.stringify(req.body.obj), req.body.id);
     res.json(response);
