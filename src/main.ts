@@ -13,12 +13,13 @@ import { MemorySaver, Annotation } from "@langchain/langgraph";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
 import { callAutomationApi, createDynamicSchema } from "./tools";
 import { retrieverChain } from "./chain";
+import { ChatGroq } from "@langchain/groq";
 import {
   data_store_sys_prompt,
   intent_sys_prompt,
   sys_message,
 } from "./prompts";
-import { intentClassificationSchema } from "./utils/helper";
+import { dataStoreSchema, intentClassificationSchema } from "./utils/helper";
 
 const StateAnnotation = Annotation.Root({
   messages: Annotation<BaseMessage[]>({
@@ -36,10 +37,10 @@ const StateAnnotation = Annotation.Root({
 const tools = [callAutomationApi];
 const toolNode = new ToolNode(tools);
 
-const llm = new ChatOpenAI({
-  model: "gpt-4o",
+const llm = new ChatGroq({
+  model: "llama-3.1-70b-versatile",
   temperature: 0,
-  maxTokens: -1,
+  maxTokens: undefined,
   maxRetries: 2,
 });
 
@@ -92,7 +93,6 @@ async function setUserInfo(state: typeof StateAnnotation.State) {
   const { query, firstName, lastName } = JSON.parse(
     state["messages"][0].content.toString(),
   );
-  // console.log(1);
   return {
     messages: new HumanMessage(query),
     firstName,
@@ -117,12 +117,10 @@ function callStructuredOutputModel(
 }
 
 async function intentClassification(state: typeof StateAnnotation.State) {
-  // async function intentClassification(state: string) {
-  // console.log(2);
-  const llm = new ChatOpenAI({
-    model: "gpt-4o-mini",
+  const llm = new ChatGroq({
+    model: "llama-3.1-70b-versatile",
     temperature: 0,
-    maxTokens: -1,
+    maxTokens: undefined,
     maxRetries: 2,
   });
 
@@ -132,14 +130,15 @@ async function intentClassification(state: typeof StateAnnotation.State) {
     intent_sys_prompt,
     ...state["messages"],
   ]);
-
   return {
     intent: result.intent,
   };
 }
 
 async function dataStoreModel(state: typeof StateAnnotation.State) {
-  const result = await llm.invoke([
+  const structuredLlm = llm.withStructuredOutput(dataStoreSchema);
+
+  const result = await structuredLlm.invoke([
     data_store_sys_prompt,
     ...state["messages"],
   ]);
@@ -185,6 +184,7 @@ export const agent = async (
 
     return { ...structuredOutput, intent: output["intent"] };
   } else {
+    console.log(output);
     return output;
   }
 };

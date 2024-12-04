@@ -1,5 +1,6 @@
 import { Document } from "@langchain/core/dist/documents/document";
 import axios from "axios";
+import { url } from "inspector";
 import { platform } from "os";
 
 export function formatDocs(docs: Document[]) {
@@ -44,6 +45,18 @@ export const intentClassificationSchema = {
       type: "string",
       description: "Intent of the text",
       enum: ["automation", "data-store"],
+    },
+  },
+};
+
+export const dataStoreSchema = {
+  title: "data_store_url",
+  name: "data_store_url",
+  description: "Url of the data-store page",
+  properties: {
+    url: {
+      type: "string",
+      description: "Url of the data-store page",
     },
   },
 };

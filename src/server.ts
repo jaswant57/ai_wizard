@@ -5,6 +5,7 @@ import { agent } from "./main";
 import { addDocs, initializeRetriever } from "./vectorIndex";
 import { isRunnableToolLike } from "@langchain/core/utils/function_calling";
 import { getAutomationNameFromId } from "./utils/helper";
+import { ChatGroq } from "@langchain/groq";
 
 dotenv.config({
   path: "./.env",
@@ -19,8 +20,19 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("/", async (req, res) => {
+  const llm = new ChatGroq({
+    model: "llama-3.1-70b-versatile",
+    temperature: 0,
+    maxTokens: undefined,
+    maxRetries: 2,
+  });
+  // @ts-ignore
+  const resp = await llm.invoke("Hello");
+  console.log(resp.content);
+
+  // res.json(res);
+  // res.send("Hello World");
 });
 
 app.post("/ai-wizard", async (req, res) => {
@@ -72,7 +84,7 @@ app.post("/ai-wizard", async (req, res) => {
       // @ts-ignore
       apiResponse["dataStoreUrl"] =
         // @ts-ignore
-        response["messages"][messagesLength - 1].content;
+        response["messages"][messagesLength - 1].url;
     }
     res.json({
       success: true,
