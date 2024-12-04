@@ -85,6 +85,10 @@ app.post("/ai-wizard", async (req, res) => {
       apiResponse["dataStoreUrl"] =
         // @ts-ignore
         response["messages"][messagesLength - 1].url;
+      apiResponse["dataStoreUrl"] = apiResponse["dataStoreUrl"].replaceAll(
+        " ",
+        "+",
+      );
     }
     res.json({
       success: true,
