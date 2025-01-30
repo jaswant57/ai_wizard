@@ -37,8 +37,15 @@ const StateAnnotation = Annotation.Root({
 const tools = [callAutomationApi];
 const toolNode = new ToolNode(tools);
 
-const llm = new ChatGroq({
-  model: "llama-3.1-70b-versatile",
+// const llm = new ChatGroq({
+//   model: "llama-3.3-70b-versatile",
+//   temperature: 0,
+//   maxTokens: undefined,
+//   maxRetries: 2,
+// });
+
+const llm = new ChatOpenAI({
+  model: "gpt-4o-mini",
   temperature: 0,
   maxTokens: undefined,
   maxRetries: 2,
@@ -66,7 +73,6 @@ function conditionalNode(state: typeof StateAnnotation.State) {
 }
 
 async function automationPreparePrompt(state: typeof StateAnnotation.State) {
-  // console.log(state);
   return {
     messages: [
       new SystemMessage(
@@ -117,19 +123,25 @@ function callStructuredOutputModel(
 }
 
 async function intentClassification(state: typeof StateAnnotation.State) {
-  const llm = new ChatGroq({
-    model: "llama-3.1-70b-versatile",
+  // const llm = new ChatGroq({
+  //   model: "llama-3.3-70b-versatile",
+  //   temperature: 0,
+  //   maxTokens: undefined,
+  //   maxRetries: 2,
+  // });
+  const llm = new ChatOpenAI({
+    model: "gpt-4o-mini",
     temperature: 0,
     maxTokens: undefined,
     maxRetries: 2,
   });
-
   const structuredLlm = llm.withStructuredOutput(intentClassificationSchema);
 
   const result = await structuredLlm.invoke([
     intent_sys_prompt,
     ...state["messages"],
   ]);
+  console.log(result);
   return {
     intent: result.intent,
   };
@@ -145,19 +157,20 @@ async function dataStoreModel(state: typeof StateAnnotation.State) {
   return { messages: [result] };
 }
 const workflow = new StateGraph(StateAnnotation)
-  .addNode("intent-classification", intentClassification)
+  // .addNode("intent-classification", intentClassification)
   .addNode("automation_agent", call_model)
   .addNode("tools", toolNode)
   .addNode("data-store", dataStoreModel)
   .addNode("setUserInfo", setUserInfo)
   .addNode("automationPreparePrompt", automationPreparePrompt)
   .addConditionalEdges("automation_agent", shouldContinue)
-  .addConditionalEdges("intent-classification", conditionalNode)
+  // .addConditionalEdges("intent-classification", conditionalNode)
   .addEdge("__start__", "setUserInfo")
-  .addEdge("setUserInfo", "intent-classification")
+  // .addEdge("setUserInfo", "intent-classification")
+  .addEdge("setUserInfo", "automationPreparePrompt")
   .addEdge("automationPreparePrompt", "automation_agent")
-  .addEdge("tools", "__end__")
-  .addEdge("data-store", "__end__");
+  .addEdge("tools", "__end__");
+// .addEdge("data-store", "__end__");
 
 const app = workflow.compile();
 
@@ -177,16 +190,16 @@ export const agent = async (
     messages: [new HumanMessage(inputs)],
   });
 
-  if (output["intent"] === "automation") {
-    const structuredOutput: {} = await callStructuredOutputModel(
-      output["messages"],
-    );
-
-    return { ...structuredOutput, intent: output["intent"] };
-  } else {
-    console.log(output);
-    return output;
-  }
+  // if (output["intent"] === "automation") {
+  const structuredOutput: {} = await callStructuredOutputModel(
+    output["messages"],
+  );
+  return structuredOutput;
+  // return { ...structuredOutput, intent: output["intent"] };
+  // } else {
+  //   // console.log(output);
+  //   return output;
+  // }
 };
 
 // agent("I want to send an auto message in Sales navigator");

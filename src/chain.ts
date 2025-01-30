@@ -11,7 +11,6 @@ export const retrieverChain = async (
   const context = await (await retriever).invoke(query);
   // console.log(context);
   const formattedDocs = formatDocs(context);
-
   const response = await promptTemplate.invoke({
     context: formattedDocs,
     query,

@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   const llm = new ChatGroq({
-    model: "llama-3.1-70b-versatile",
+    model: "llama-3.3-70b-versatile",
     temperature: 0,
     maxTokens: undefined,
     maxRetries: 2,
@@ -58,7 +58,7 @@ app.post("/ai-wizard", async (req, res) => {
     let id = "";
     let apiResponse: any = {};
     // @ts-ignore
-    if (response?.intent === "automation") {
+    if (response?.actionType) {
       // @ts-ignore
       id = response.inputs.automationId;
       otherRecommendedAutomations =
@@ -74,7 +74,7 @@ app.post("/ai-wizard", async (req, res) => {
       );
 
       apiResponse = response;
-      delete apiResponse.intent;
+      // delete apiResponse.intent;
     }
     // @ts-ignore
     else if (response?.intent === "data-store") {

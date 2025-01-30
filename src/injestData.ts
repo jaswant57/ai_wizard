@@ -1,12 +1,6 @@
 import { PineconeStore } from "@langchain/pinecone";
-// import { OpenAIEmbeddings } from '@langchain/openai';
+import { OpenAIEmbeddings } from "@langchain/openai";
 import { CohereEmbeddings } from "@langchain/cohere";
-
-const embeddings = new CohereEmbeddings({
-  apiKey: "YOUR-API-KEY", // In Node.js defaults to process.env.COHERE_API_KEY
-  batchSize: 48, // Default value if omitted is 48. Max value is 96
-  model: "embed-english-v3.0",
-});
 import { Pinecone as PineconeClient } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
 import type { Document } from "@langchain/core/documents";
@@ -16,13 +10,29 @@ dotenv.config({
   path: "./.env",
 });
 
+// const embeddings = new CohereEmbeddings({
+//   apiKey: "YOUR-API-KEY", // In Node.js defaults to process.env.COHERE_API_KEY
+//   batchSize: 48, // Default value if omitted is 48. Max value is 96
+//   model: "embed-english-v3.0",
+// });
+console.log(process.env.OPENAI_API_KEY);
+// const embeddings = new OpenAIEmbeddings({
+//   apiKey: process.env.OPENAI_API_KEY,
+//   model: "text-embedding-3-large",
+// });
+
 export const addData = async () => {
   const data = JSON.parse(
     fs.readFileSync("./src/data/formatedEnrichedAutomations.json", "utf8"),
   );
-  const embeddings = new CohereEmbeddings({
-    batchSize: 48, // Default value if omitted is 48. Max value is 96
-    model: "embed-english-v3.0",
+  // const embeddings = new CohereEmbeddings({
+  //   batchSize: 48, // Default value if omitted is 48. Max value is 96
+  //   model: "embed-english-v3.0",
+  // });
+
+  const embeddings = new OpenAIEmbeddings({
+    apiKey: process.env.OPENAI_API_KEY,
+    model: "text-embedding-3-large",
   });
 
   const pinecone = new PineconeClient();
@@ -53,4 +63,4 @@ const createDocument = (obj: any) => {
   };
 };
 
-addData();
+// addData();

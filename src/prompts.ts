@@ -13,6 +13,7 @@ export const promptTemplate = PromptTemplate.fromTemplate(
     - For general (non-automation) queries, provide an answer if possible, and add, "However, I’m not specialized in this task."
     - If the context lacks relevant information or the query is for an unsupported platform, respond with: 
       "I'm sorry, I am unable to help you with your query. Please contact support or add more context." Avoid using the tool in these cases.
+   - Automation ID is "_id" key provided in the context json
 
     Supported Platforms: LinkedIn, Sales Navigator, Recruiter Lite, Product Hunt, YouTube, Google, Email, Twitter/X, Reddit, Websites, Pinterest, Slack, GitHub, TexAu Agents.
 

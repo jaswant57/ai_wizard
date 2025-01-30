@@ -1,6 +1,306 @@
 {
   "automationData": [
     {
+      "_id": "674f1dd120c3c7ae0397b1e8",
+      "platformId": "622f03eb770f6bba0b8facaa",
+      "name": "Enrich LinkedIn Company Profile",
+      "label": "Enrich LinkedIn Company Profile",
+      "shortName": "Enrich Company",
+      "description": "Enrich LinkedIn company profiles with specific data such as LinkedIn ID, logo URL, company type, description, headcount range, HQ details, followers count, and more, without using cookies.",
+      "keywords": [
+        "Company Enrichment",
+        "Company Data",
+        "Logo URL",
+        "Company Type",
+        "Headcount Range",
+        "HQ Details",
+        "Followers Count",
+        "Automation",
+        "Company Insights",
+        "LinkedIn Profiles",
+        "Without cookies"
+      ],
+      "sampleQueries": [
+        "How to enrich LinkedIn company profiles with specific data?",
+        "Automate LinkedIn company data extraction without cookies",
+        "Get LinkedIn ID, logo URL, and company type from a company profile",
+        "Extract headcount range and HQ details from LinkedIn company profiles",
+        "How to find company description and followers count from LinkedIn?",
+        "Automate LinkedIn company enrichment for business insights",
+        "Extract LinkedIn company data including industry and specialties",
+        "How to get LinkedIn company showcase pages and founded year?",
+        "Set up LinkedIn company enrichment automation",
+        "Use LinkedIn company URLs to enrich business data"
+      ],
+      "alternateNames": [
+        "LinkedIn Company Data Extractor",
+        "LinkedIn Company Enrichment Tool",
+        "LinkedIn Company Insights Scraper",
+        "LinkedIn Company Data Fetcher",
+        "LinkedIn Company Enrichment Automation",
+        "LinkedIn Company Insights SDK",
+        "LinkedIn Company Data Enrichment API",
+        "LinkedIn Company Profile Enricher",
+        "LinkedIn Company Insights Automation Tool",
+        "LinkedIn Business Data Enrichment Tool"
+      ]
+    },
+    {
+      "_id": "674f135f20c3c7ae03979476",
+      "platformId": "622f03eb770f6bba0b8facaa",
+      "name": "LinkedIn Profile Lead Enricher",
+      "label": "LinkedIn Profile Lead Enricher",
+      "shortName": "LinkedIn Lead Enricher",
+      "description": "Extract detailed LinkedIn profile data including LinkedIn ID, industry, location, skills, job details, company information, and more without using cookies.",
+      "keywords": [
+        "LinkedIn",
+        "Lead Enrichment",
+        "Profile Data",
+        "LinkedIn ID",
+        "Industry",
+        "Location",
+        "Skills",
+        "Job Details",
+        "Company Information",
+        "Email",
+        "Followers",
+        "Automation",
+        "Lead Generation",
+        "LinkedIn Profiles"
+      ],
+      "sampleQueries": [
+        "How to extract LinkedIn profile data for lead enrichment?",
+        "Automate LinkedIn profile data extraction without cookies",
+        "Get LinkedIn ID, industry, and location from a profile",
+        "Extract job details and company information from LinkedIn profiles",
+        "How to find email addresses and skills from LinkedIn profiles?",
+        "Automate LinkedIn lead enrichment for sales prospecting",
+        "Extract LinkedIn profile data including job history and company details",
+        "How to get LinkedIn Sales Navigator links and profile summaries?",
+        "Set up LinkedIn profile lead enrichment automation",
+        "Use LinkedIn profiles to enrich leads with detailed data"
+      ],
+      "alternateNames": [
+        "LinkedIn Profile Data Extractor",
+        "LinkedIn Lead Enrichment Tool",
+        "LinkedIn Profile Scraper",
+        "LinkedIn Data Enrichment Automation",
+        "LinkedIn Profile Insights Extractor",
+        "LinkedIn Lead Enrichment SDK",
+        "LinkedIn Profile Data Fetcher",
+        "LinkedIn Lead Enrichment API",
+        "LinkedIn Profile Enrichment Tool",
+        "LinkedIn Lead Data Automation Tool"
+      ]
+    },
+    {
+      "_id": "674ef7fa20c3c7ae03978eaa",
+      "platformId": "622f03eb770f6bba0b8facaa",
+      "name": "LinkedIn Email Finder",
+      "label": "LinkedIn Email Finder",
+      "shortName": "LinkedIn Email Finder",
+      "description": "Find an email address from a LinkedIn profile URL.",
+      "keywords": [
+        "Email Finder",
+        "Email Extraction",
+        "Email",
+        "Contact",
+        "Lead Generation"
+      ],
+      "sampleQueries": [
+        "How to find an email address from a LinkedIn profile URL?",
+        "Automate email extraction from LinkedIn profiles",
+        "Extract email addresses from LinkedIn profile links",
+        "Find contact information from LinkedIn profiles",
+        "How to use LinkedIn profile URLs to find emails?",
+        "Automate LinkedIn email finding for lead generation",
+        "Extract emails from LinkedIn profiles automatically",
+        "How to get email addresses from LinkedIn profile URLs?",
+        "Set up LinkedIn email finder automation",
+        "Use LinkedIn profile URLs to find email addresses for outreach"
+      ],
+      "alternateNames": [
+        "LinkedIn Email Extractor",
+        "LinkedIn Profile Email Finder",
+        "LinkedIn Email Scraper Tool",
+        "LinkedIn Contact Information Finder",
+        "LinkedIn Email Extraction Automation",
+        "LinkedIn Email Finder SDK",
+        "LinkedIn Email Finder API",
+        "LinkedIn Profile Email Extractor Tool",
+        "LinkedIn Lead Generation Email Finder",
+        "LinkedIn Email Finder Automation Tool"
+      ]
+    },
+    {
+      "_id": "67443cb10966cc5dc6d0b9ae",
+      "platformId": "622f03eb770f6bba0b8facaa",
+      "name": "LinkedIn Auto Like Comment",
+      "label": "Like Comment",
+      "description": "Automatically like comments on LinkedIn posts.",
+      "keywords": [
+        "LinkedIn",
+        "Auto Like",
+        "Comment",
+        "Engagement",
+        "Automation",
+        "Social Media",
+        "Interaction",
+        "LinkedIn Posts"
+      ],
+      "sampleQueries": [
+        "How to automatically like comments on LinkedIn posts?",
+        "Automate liking comments on LinkedIn",
+        "Set up auto-like for LinkedIn comments",
+        "Like LinkedIn comments automatically",
+        "How to increase engagement by auto-liking LinkedIn comments?",
+        "Automate LinkedIn comment interactions",
+        "Auto-like comments on LinkedIn posts for better engagement",
+        "How to use automation to like LinkedIn comments?",
+        "Set up LinkedIn auto-like for comments",
+        "Automate LinkedIn comment liking for social media growth"
+      ],
+      "alternateNames": [
+        "LinkedIn Comment Auto-Liker",
+        "LinkedIn Auto Comment Like Tool",
+        "LinkedIn Comment Engagement Automator",
+        "LinkedIn Auto Like Comments Feature",
+        "LinkedIn Comment Interaction Automation",
+        "LinkedIn Auto Like Comments SDK",
+        "LinkedIn Comment Like Automation Tool",
+        "LinkedIn Auto Like Comments API",
+        "LinkedIn Comment Like Bot",
+        "LinkedIn Engagement Automation Tool"
+      ]
+    },
+    {
+      "_id": "673431492a9b25931202ee02",
+      "platformId": "622f03eb770f6bba0b8facaa",
+      "name": "LinkedIn Company Senior Hire Insights Extractor",
+      "label": "LinkedIn Company Senior Hire Insights Extractor",
+      "shortName": "Extract Senior Hire Insights",
+      "description": "Extract insights about senior hires at a company, including their name, profile link, current position, and hire date.",
+      "keywords": [
+        "Company",
+        "Senior Hire",
+        "Insights",
+        "Profile",
+        "Current Position",
+        "Hire Date",
+        "Recruitment",
+        "Leadership",
+        "LinkedIn Profiles"
+      ],
+      "sampleQueries": [
+        "How to extract LinkedIn senior hire names and profile links?",
+        "Get current positions and hire dates of LinkedIn senior hires",
+        "Fetch LinkedIn company senior hire insights including profile details",
+        "Scrape LinkedIn senior hire data for recruitment analysis",
+        "Automate LinkedIn senior hire profile data extraction",
+        "Extract LinkedIn senior hire details for leadership insights",
+        "How to analyze LinkedIn company senior hire trends?",
+        "Get insights on LinkedIn company senior hire recruitment patterns",
+        "Automate LinkedIn senior hire profile link extraction",
+        "Fetch LinkedIn senior hire data for competitive analysis"
+      ],
+      "alternateNames": [
+        "LinkedIn Senior Hire Profile Extractor",
+        "LinkedIn Senior Hire Insights Tool",
+        "LinkedIn Senior Hire Data Fetcher",
+        "LinkedIn Senior Hire Career Insights Extractor",
+        "LinkedIn Company Senior Hire Tracker",
+        "LinkedIn Senior Hire Profile Insights Tool",
+        "LinkedIn Senior Hire Data Automation Tool",
+        "LinkedIn Senior Hire Extraction SDK",
+        "LinkedIn Senior Hire Insights Scraper API",
+        "LinkedIn Senior Hire Recruitment Analytics Tool"
+      ]
+    },
+    {
+      "_id": "67342e1c2a9b25931202eccc",
+      "platformId": "622f03eb770f6bba0b8facaa",
+      "name": "LinkedIn Company Alumni Insights Extractor",
+      "label": "LinkedIn Company Alumni Insights Extractor",
+      "shortName": "Extract Company Alumni Insights",
+      "description": "Extract Company Alumni Insights including alumni names, profile links, current positions, and previous positions.",
+      "keywords": [
+        "Company",
+        "Alumni",
+        "Insights",
+        "Profile",
+        "Current Position",
+        "Previous Position",
+        "Employee",
+        "Career History",
+        "LinkedIn Profiles"
+      ],
+      "sampleQueries": [
+        "How to extract LinkedIn company alumni names and profile links?",
+        "Get current and previous positions of LinkedIn company alumni",
+        "Fetch LinkedIn company alumni career history and profile details",
+        "Scrape LinkedIn company alumni insights including current and past roles",
+        "Automate LinkedIn company alumni profile data extraction",
+        "Extract LinkedIn company alumni details for competitive analysis",
+        "How to analyze LinkedIn company alumni career transitions?",
+        "Get insights on LinkedIn company alumni career progression",
+        "Automate LinkedIn company alumni profile link extraction",
+        "Fetch LinkedIn company alumni data for recruitment insights"
+      ],
+      "alternateNames": [
+        "LinkedIn Company Alumni Profile Extractor",
+        "Company Alumni Career Insights Tool",
+        "Company Alumni Profile Data Fetcher",
+        "Company Alumni Career History Extractor",
+        "LinkedIn Company Alumni Career Tracker",
+        "LinkedIn Company Alumni Profile Insights Tool",
+        "LinkedIn Company Alumni Data Automation Tool",
+        "LinkedIn Company Alumni Profile Extraction SDK",
+        "LinkedIn Company Alumni Insights Scraper API",
+        "LinkedIn Company Alumni Career Analytics Tool"
+      ]
+    },
+    {
+      "_id": "63f878da7022e05c1192df29",
+      "platformId": "622f03eb770f6bba0b8facaa",
+      "name": "LinkedIn Company Insights",
+      "label": "LinkedIn Company Insights",
+      "description": "Extract Company Insights from Linkeidn",
+      "keywords": [
+        "Company",
+        "Insights",
+        "Headcount",
+        "Growth",
+        "employee",
+        "hire",
+        "senior hire",
+        "openings growth"
+      ],
+      "sampleQueries": [
+        "How to extract company insights from LinkedIn?",
+        "Get LinkedIn company headcount and growth data",
+        "Fetch employee hiring trends from LinkedIn",
+        "Scrape LinkedIn company insights for senior hires",
+        "Automate LinkedIn company growth data extraction",
+        "Extract LinkedIn company openings and growth insights",
+        "How to analyze LinkedIn company employee data?",
+        "Get insights on LinkedIn company hiring trends",
+        "Automate LinkedIn company insights extraction",
+        "Fetch LinkedIn company insights for competitive analysis"
+      ],
+      "alternateNames": [
+        "LinkedIn Company Insights Extractor",
+        "LinkedIn Company Data Scraper Tool",
+        "LinkedIn Company Insights Fetcher",
+        "LinkedIn Company Growth Insights Tool",
+        "LinkedIn Company Headcount Analyzer",
+        "LinkedIn Company Hiring Insights Extractor",
+        "LinkedIn Company Insights Automation Tool",
+        "LinkedIn Company Data Extraction SDK",
+        "LinkedIn Company Insights Scraper API",
+        "LinkedIn Company Insights Analytics Tool"
+      ]
+    },
+    {
       "_id": "640641240936e46db570bb9e",
       "platformId": "622f03eb770f6bba0b8facaa",
       "name": "LinkedIn Event Scraper",
@@ -8,9 +308,8 @@
       "description": "Extract the Details of a LinkedIn Event",
       "keywords": [
         "Event",
-        "LinkedIn Event",
         "Event Details",
-        "LinkedIn Event Scraper",
+        "Event Scraper",
         "Event Extraction",
         "LinkedIn Event Information",
         "Event Analytics",
@@ -24,7 +323,8 @@
         "Fetch LinkedIn event data from a post",
         "Get LinkedIn event information automatically",
         "LinkedIn event details extraction automation",
-        "Automate LinkedIn event data scraping for insights"
+        "Automate LinkedIn event data scraping for insights",
+        "I have events related to supply chain managament in google sheet and want scrape data on linkedin"
       ],
       "alternateNames": [
         "LinkedIn Event Details Scraper Tool",
@@ -119,10 +419,10 @@
       "label": "List sent Invitations",
       "description": "Extract the List of All Pending Invitation You Sent",
       "keywords": [
-        "LinkedIn invitations",
+        "sent invitations",
         "sent connection requests",
         "pending invitations",
-        "LinkedIn connections",
+        "connections",
         "networking requests"
       ],
       "sampleQueries": [
@@ -130,13 +430,14 @@
         "List all pending sent LinkedIn connection requests",
         "How can I see sent invitations on LinkedIn?",
         "Extract my sent pending LinkedIn invitations",
-        "Display all my sent requests on LinkedIn"
+        "Display all my sent requests on LinkedIn",
+        "I seek guidance on how to extract the profiles of individuals from my Google Sheet to whom I’ve sent connection requests."
       ],
       "alternateNames": [
-        "LinkedIn Invitation Tracker",
+        "LinkedIn Sent Invitations Tracker",
         "Sent LinkedIn Requests Viewer",
         "LinkedIn Connection Sent List",
-        "Pending LinkedIn Requests Extractor",
+        "Pending LinkedIn Sent Requests Extractor",
         "LinkedIn Invitation Sent Overview"
       ]
     },
@@ -225,20 +526,16 @@
       "name": "LinkedIn Group Search Export",
       "label": "Linkedin Group Search Extractor",
       "description": "Extract Groups from LinkedIn Search",
-      "keywords": [
-        "LinkedIn groups",
-        "group extraction",
-        "LinkedIn search",
-        "group data export",
-        "group listing"
-      ],
+      "keywords": ["groups", "search", "bulk group extraction"],
       "sampleQueries": [
         "How to extract LinkedIn groups using LinkedIn Group Search Export?",
         "Can LinkedIn Group Search Export help me find relevant groups?",
         "What is the process to export LinkedIn groups with LinkedIn Group Search Export?",
         "Steps to use LinkedIn Group Search Extractor for group data export.",
         "LinkedIn: Export all groups related to my niche",
-        "I want to export groups name Python Study Group"
+        "I want to export groups name Python Study Group",
+        "I need a list of 1000+ active LinkedIn groups related to data science. Can you help me retrieve them?",
+        "i need 1000+ active groups related to project management on linkedin"
       ],
       "alternateNames": [
         "LinkedIn Group Extractor Tool",
@@ -611,10 +908,9 @@
       "description": "Extract Upcoming Events from LinkedIn Search",
       "keywords": [
         "LinkedIn events",
-        "event extraction",
+        "events extraction",
         "upcoming LinkedIn events",
-        "event search",
-        "LinkedIn data scraping"
+        "event search"
       ],
       "sampleQueries": [
         "How can I extract events happening next month on Linkedin?",
@@ -705,18 +1001,18 @@
       "sampleQueries": [
         "How to use LinkedIn School Search Export on LinkedIn?",
         "Can the LinkedIn School Search Extractor retrieve university data from LinkedIn?",
-        "What data fields can I extract using LinkedIn School Search Export on LinkedIn?",
+        "How can I retrieve a list of 1000+ MBA schools on LinkedIn? I need to extract their details for analysis.",
         "How do I export school-related information from LinkedIn using LinkedIn School Search Extractor?",
         "Is there a tutorial for using LinkedIn School Search Export on LinkedIn?",
         "Search for Oxford University Schools on Linkedin"
       ],
       "alternateNames": [
-        "LinkedIn School Data Extractor",
-        "LinkedIn Education Export Tool",
-        "LinkedIn Academic Data Exporter",
+        "LinkedIn School Data Search Extractor",
+        "LinkedIn Education Search Tool",
+        "LinkedIn Academies Search Exporter",
         "LinkedIn University Search Extractor",
-        "LinkedIn Institution Export Utility",
-        "LinkedIn School Export Feature"
+        "LinkedIn Institution Search Utility",
+        "LinkedIn School Search Feature"
       ]
     },
     {
@@ -753,10 +1049,9 @@
       "label": "Get 1st-Degree Relationships (From Most Recent to Oldest)",
       "description": "Extract Your LinkedIn 1st-Degree Connections",
       "keywords": [
-        "LinkedIn connections",
+        " connections",
         "first-degree connections",
         "connections export",
-        "LinkedIn data",
         "network extraction"
       ],
       "sampleQueries": [
@@ -765,7 +1060,8 @@
         "Can I download my LinkedIn 1st-degree connections list?",
         "How to save LinkedIn connections to a file?",
         "Is there a tool to export LinkedIn connections automatically?",
-        "How to get a list of LinkedIn connections sorted by date?"
+        "How to get a list of LinkedIn connections sorted by date?",
+        "How to get 500+ connections of my linkedin"
       ],
       "alternateNames": [
         "LinkedIn Contacts Export",
@@ -1392,7 +1688,8 @@
         "Can I see if my connections are active on LinkedIn?",
         "How to find out who is online on LinkedIn now?",
         "Is there a tool to check LinkedIn presence status?",
-        "How to maximize LinkedIn outreach by checking online status?"
+        "How to maximize LinkedIn outreach by checking online status?",
+        "How can I extract and verify the LinkedIn online presence of individuals from a Google Sheet or CSV file?"
       ],
       "alternateNames": [
         "LinkedIn Presence Detector",
@@ -1533,7 +1830,7 @@
       "keywords": [
         "withdraw connection",
         "cancel request",
-        "LinkedIn invitation",
+        "invitation",
         "pending connection",
         "remove sent request",
         "undo invite"
@@ -1544,13 +1841,15 @@
         "Steps to remove a sent connection request on LinkedIn",
         "How do I undo an invitation on LinkedIn?",
         "What is the process to retract a LinkedIn connection invite?",
-        "Guide for withdrawing LinkedIn pending invitations"
+        "I need assistance with automating the process of withdrawing LinkedIn invitations",
+        "Guide for withdrawing LinkedIn pending invitations",
+        "How can I efficiently automate withdrawing LinkedIn invitations."
       ],
       "alternateNames": [
-        "LinkedIn Cancel Connection Request",
+        "LinkedIn Cancel Sent Connection Request",
         "Withdraw LinkedIn Invitation",
         "LinkedIn Remove Sent Invite",
-        "Cancel Pending LinkedIn Connection",
+        "Cancel Pending LinkedIn Sent Connection",
         "Undo LinkedIn Connection Request",
         "LinkedIn Retract Invitation"
       ]
@@ -1727,8 +2026,11 @@
         "Can I extract my Product Hunt following list?",
         "Guide to exporting my Product Hunt network",
         "Product Hunt: Export following easily",
+        "how to know that whom i am following on product hunt",
+        "How can I see the list of people I am following on Product Hunt?",
         "Steps to get a Product Hunt following export",
-        "How do I get my following data from Product Hunt?"
+        "How do I get my following data from Product Hunt?",
+        "What's the best way to see whom I follow on Product Hunt?"
       ],
       "alternateNames": [
         "Product Hunt Profiling Export",
@@ -1802,7 +2104,13 @@
       "name": "Twitter List Creator",
       "label": "Twitter List Creator",
       "description": "Create New Lists on Twitter",
-      "keywords": ["lists", "twitter lists", "list creator", "list creation"],
+      "keywords": [
+        "lists",
+        "twitter lists",
+        "list creator",
+        "list creation",
+        "group profiles"
+      ],
       "sampleQueries": [
         "How to create a new list on Twitter?",
         "What are tips for Twitter list management?",
@@ -1888,7 +2196,8 @@
         "Can I download Redditor information via Reddit User Search Export?",
         "What is the process to scrape Reddit profiles using Reddit User Search Export?",
         "Is there a way to automate Reddit profiles data extraction?",
-        "How does the Reddit User Search Export tool work?"
+        "How does the Reddit User Search Export tool work?",
+        "What's the best way to get a collection of profiles from Reddit?"
       ],
       "alternateNames": [
         "Reddit Search User Extractor",
@@ -2313,9 +2622,13 @@
         "Twitter analytics",
         "tweet impressions",
         "social media metrics",
-        "track Twitter performance"
+        "track Twitter performance",
+        "likes count",
+        "comments count"
       ],
       "sampleQueries": [
+        "Which automation to use to get the likes count of a twitter post",
+        "Which automation to use to get the comments count of a twitter post",
         "How can I export my tweet impressions on Twitter?",
         "What tool helps track Twitter impressions?",
         "Can I download my Twitter data for performance analysis?",
@@ -2830,11 +3143,11 @@
       "platformId": "622f03eb770f6bba0b8facaa",
       "name": "LinkedIn Group Scraper",
       "label": "LinkedIn Group Scraper",
-      "description": "Get LinkedIn Group Data Including its Owner Profiles",
+      "description": "Get LinkedIn Group Data Including its Owner Profiles From Group Urls",
       "keywords": [
-        "LinkedIn group data",
+        "scrape group",
         "group owner profiles",
-        "LinkedIn data extraction",
+        "group data extraction",
         "group analytics"
       ],
       "sampleQueries": [
@@ -2843,7 +3156,8 @@
         "Can LinkedIn Group Scraper show me insights on LinkedIn group activities?",
         "How does LinkedIn Group Scraper help in LinkedIn group management?",
         "What kind of LinkedIn group information can be extracted using this scraper?",
-        "How to automate data extraction from LinkedIn groups using the scraper?"
+        "How to automate data extraction from LinkedIn groups using the scraper?",
+        "i have a groups links in linkedin please extract info of that? could u guide me"
       ],
       "alternateNames": [
         "LinkedIn Data Extractor LinkedIn",
@@ -3018,17 +3332,14 @@
       "name": "LinkedIn Company Auto Follow",
       "label": "LinkedIn Company Auto Follow",
       "description": "Auto Follow any Company on LinkedIn",
-      "keywords": [
-        "auto follow companies",
-        "company follow bot",
-        "automated LinkedIn following"
-      ],
+      "keywords": ["auto follow companies", "company follow bot"],
       "sampleQueries": [
         "How to automatically follow a LinkedIn company?",
         "Can I set up auto follow for companies on LinkedIn?",
         "What is the LinkedIn Company Auto Follow tool?",
         "LinkedIn auto-follow companies feature",
-        "Automate my LinkedIn company follows"
+        "Automate my LinkedIn company follows",
+        "How can I efficiently send follow requests to more than 1000 profiles for my company, Infosys? I need help."
       ],
       "alternateNames": [
         "LinkedIn Auto Company Follow",
@@ -3142,7 +3453,15 @@
         "Extract Reddit content about 'new tech gadgets' from Reddit",
         "Search Reddit for posts about 'climate change' on Reddit",
         "Get all Reddit discussions mentioning 'startups' on Reddit",
-        "Find Reddit posts discussing 'health tips' on Reddit"
+        "Find Reddit posts discussing 'health tips' on Reddit",
+        "How to get the list of posts on reddit",
+        "What is the process to retrieve a list of posts from Reddit?",
+        "How can I fetch Reddit posts efficiently?",
+        "Steps to extract a list of posts from Reddit.",
+        "How to gather a list of posts on Reddit?",
+        "Guide to retrieving posts from Reddit.",
+        "How do I extract a list of Reddit posts using automation?",
+        "How can I use tools or APIs to get a list of posts on Reddit?"
       ],
       "alternateNames": [
         "Reddit Keyword Extractor on Reddit",
@@ -3224,6 +3543,8 @@
       ],
       "sampleQueries": [
         "How to check for retargeting pixels on a website?",
+        "How do I set up pixel tracking on a website?",
+        "What's the best way to implement pixel tracking on a website?",
         "Tools for extracting tracking pixels from sites?",
         "What is the best pixel extraction tool for websites?",
         "How to identify tracking scripts in website code?",
@@ -3253,6 +3574,7 @@
       "sampleQueries": [
         "How to scrape video data from a YouTube channel?",
         "YouTube Channel videos extracting tool?",
+        "i want to scrape video details on youtube for my youtube channel",
         "Guide to export YouTube channel videos data to CSV",
         "Automate channel video data collection from YouTube",
         "YouTube channel content extraction",
@@ -3390,7 +3712,8 @@
         "Extract local business data with Google My Business Scraper on Google",
         "How to scrape service information from Google My Business",
         "Find business categories via Google My Business",
-        "Use Google My Business Scraper to gather contact details"
+        "Use Google My Business Scraper to gather contact details",
+        "What's the best way to search for business information in Mumbai on Google?"
       ],
       "alternateNames": [
         "Google Business Data Extractor",
@@ -3897,25 +4220,24 @@
       "label": "LinkedIn Auto Accept Pending Connection",
       "description": "Auto Accept Received Connection Request on LinkedIn.",
       "keywords": [
-        "LinkedIn automation",
-        "auto-accept connections",
+        "auto-accept",
         "network management",
-        "LinkedIn connections",
-        "connection requests",
-        "LinkedIn network growth"
+        "connections",
+        "requests",
+        "network",
+        "growth"
       ],
       "sampleQueries": [
         "How can I automatically accept LinkedIn connection requests?",
         "Is there a tool to auto-accept pending connections on LinkedIn?",
-        "What's the best way to manage my LinkedIn connection requests automatically?",
+        "What's the best way to accept my LinkedIn connection requests automatically?",
         "Can LinkedIn auto-accept connections?",
-        "How does LinkedIn automation work for pending requests?"
+        "How does LinkedIn automation work for accepting pending requests?"
       ],
       "alternateNames": [
         "LinkedIn Connection Auto-Approve",
         "Auto-accept LinkedIn Requests",
-        "LinkedIn Pending Connection Manager",
-        "LinkedIn Connection Automation",
+        "LinkedIn Pending Connection Auto Accept",
         "Auto Approver for LinkedIn Connections"
       ]
     },
@@ -4172,7 +4494,7 @@
       "description": "Extract Courses from LinkedIn Search",
       "keywords": [
         "LinkedIn learning",
-        "online courses",
+        "online courses search",
         "course extraction",
         "educational resources"
       ],
@@ -4182,7 +4504,8 @@
         "Export marketing courses from LinkedIn.",
         "Find LinkedIn online courses for project management.",
         "How do I download course details from LinkedIn?",
-        "Can I automate LinkedIn course data export?"
+        "Can I automate LinkedIn course data export?",
+        "How can I extract over 1000 LinkedIn courses that offer internships specifically in front-end development? Your assistance would be greatly appreciated."
       ],
       "alternateNames": [
         "LinkedIn Course Extractor",
@@ -4426,10 +4749,8 @@
       ],
       "alternateNames": [
         "LinkedIn Group Invitation Tool",
-        "LinkedIn Invite Automation",
         "LinkedIn Group Member Builder",
-        "LinkedIn Networking Assistance",
-        "LinkedIn Connection Inviter"
+        "LinkedIn Group Builder"
       ]
     },
     {
@@ -4865,10 +5186,14 @@
       ],
       "sampleQueries": [
         "YouTube: How to download search results to CSV?",
+        "How can I find all videos related to machine learning?",
+        "What is the process to retrieve videos on YouTube about machine learning?",
+        "How do I gather all machine learning-related videos?",
         "YouTube: Extract video details from search",
         "YouTube: Export video links from search results",
         "YouTube: Automate video data extraction",
-        "YouTube: Scrape search result video links"
+        "YouTube: Scrape search result video links",
+        "i want to get all videos related to machine learning on youtube"
       ],
       "alternateNames": [
         "YouTube Video Exporter",
@@ -5516,6 +5841,8 @@
       ],
       "sampleQueries": [
         "Product Hunt upcoming launches export",
+        "How can I find a list of upcoming launches on Product Hunt?",
+        "What's the best way to view upcoming product launches on Product Hunt?",
         "Export upcoming launches from Product Hunt",
         "Get Product Hunt upcoming products",
         "Retrieve upcoming launches on Product Hunt",
@@ -5632,6 +5959,8 @@
       ],
       "sampleQueries": [
         "How do I scrape data from a website?",
+        "How can I find information about a website?",
+        "How can I access the details of a website?",
         "Can you automate data extraction from Twitter blog pages?",
         "What is the best way to scrape the About Us section of a website?",
         "How to collect data from a website's home page?",
@@ -5670,7 +5999,9 @@
         "Export all monthly winners from 2022 on Product Hunt",
         "Find the Product of the Year on Product Hunt",
         "Provide a list of top tech startups from Product Hunt launches",
-        "Get a summary of weekly winners on Product Hunt"
+        "Get a summary of weekly winners on Product Hunt",
+        "How can I find information about products launched during a specific year on Product Hunt?",
+        "What's the process to view products from a particular year on Product Hunt?"
       ],
       "alternateNames": [
         "Product Hunt Top Launches",
@@ -5738,7 +6069,11 @@
         "Export Product of the Day from Product Hunt",
         "List all Product Hunt winners from last week",
         "What are the top products today on Product Hunt?",
-        "Generate a report of Product Hunt daily winners"
+        "Generate a report of Product Hunt daily winners",
+        "How can I find information about products launched on a specific day on Product Hunt?",
+        "What's the best way to view products from a particular day on Product Hunt?",
+        "How do I access details of products launched on a given date on Product Hunt?",
+        "How can I get details about daily launches on Product Hunt for a chosen date?"
       ],
       "alternateNames": [
         "Product Hunt Daily Winners Export",
@@ -5880,6 +6215,7 @@
       "sampleQueries": [
         "How do I clean company names?",
         "Show me how to standardize company labels",
+        "How can I ensure a company name is clean and formatted properly?",
         "Can you refine business titles?",
         "Guide to normalizing corporate identities.",
         "Tips for cleaning up my business name list.",

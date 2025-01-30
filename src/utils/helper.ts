@@ -6,7 +6,12 @@ import { platform } from "os";
 export function formatDocs(docs: Document[]) {
   let docContent = "";
   docs.forEach((doc) => {
-    docContent += `\n\n ${doc.pageContent}`;
+    const docJson = JSON.parse(doc.pageContent);
+    delete docJson.keywords;
+    delete docJson.sampleQueries;
+    delete docJson.alternateNames;
+
+    docContent += `\n\n ${JSON.stringify(docJson, null, 2)}`;
   });
   return docContent;
 }
@@ -52,6 +57,7 @@ export const intentClassificationSchema = {
 export const dataStoreSchema = {
   title: "data_store_url",
   name: "data_store_url",
+  type: "object",
   description: "Url of the data-store page",
   properties: {
     url: {
