@@ -22,18 +22,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-  const llm = new ChatGroq({
-    model: "llama-3.3-70b-versatile",
-    temperature: 0,
-    maxTokens: undefined,
-    maxRetries: 2,
-  });
-  // @ts-ignore
-  const resp = await llm.invoke("Hello");
-  console.log(resp.content);
-
-  // res.json(res);
-  // res.send("Hello World");
+  res.send("Hello World");
 });
 
 app.post("/ai-wizard", async (req, res) => {
