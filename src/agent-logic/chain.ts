@@ -1,6 +1,6 @@
-import { promptTemplate } from "./prompts";
-import { initializeRetriever } from "./vectorIndex";
-import { formatDocs } from "./utils/helper";
+import { promptTemplate } from "../utils/prompts";
+import { initializeRetriever } from "../index/vectorIndex";
+import { formatDocs } from "../utils/helper";
 
 export const retrieverChain = async (
   query: string,

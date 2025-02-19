@@ -2,10 +2,11 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { agent } from "./main";
-import { addDocs, initializeRetriever } from "./vectorIndex";
+import { addDocs, initializeRetriever } from "./index/vectorIndex";
 import { isRunnableToolLike } from "@langchain/core/utils/function_calling";
 import { getAutomationNameFromId } from "./utils/helper";
 import { ChatGroq } from "@langchain/groq";
+import { getAccounts } from "./agent-logic/tools";
 
 dotenv.config({
   path: "./.env",
@@ -38,20 +39,21 @@ app.get("/", async (req, res) => {
 app.post("/ai-wizard", async (req, res) => {
   try {
     // Ensure req.body.query is defined
-    if (!req.body.query) {
+    // console.log(req.body);
+    if (!req.body.query || !req.body.intent) {
       res.status(400).json({
         success: false,
-        error: "Query parameter is missing in the request body.",
+        error: "Query/Inteny parameter is missing in the request body.",
       });
       return;
     }
 
     let response = await agent(
       req.body.query,
+      req.body.intent,
       req.body.firstName,
       req.body.lastName,
     );
-    // console.log(response);
     let name = "";
     let automationDetails = [];
     let otherRecommendedAutomations = [];
@@ -135,6 +137,16 @@ app.post("/addDoc", async (req, res) => {
   }
 });
 
+app.post("/get-accounts", async (req: Request, res: Response) => {
+  try {
+    const { token, context } = req.body;
+    const accounts = await getAccounts(token, context);
+    res.json({ accounts });
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

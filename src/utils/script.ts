@@ -19,6 +19,7 @@ async function makeApiCall(query: string): Promise<ApiResponse> {
       "http://localhost:3000/ai-wizard",
       {
         query,
+        intent: "automation",
         firstName: "Jaswant",
         lastName: "Rajput",
       },
@@ -127,8 +128,9 @@ async function processCSV(inputFile: string, jsonFile: string): Promise<void> {
 }
 
 // Usage
-const inputFilePath = "./src/data/cleaned-queries.json"; // Path to the input CSV file
+const inputFilePath = "./src/data/queries.json"; // Path to the input CSV file
 // const outputFilePath = "output.csv"; // Path to the output CSV file
 const outputJsonPath = "./src/data/output.json"; // Path to the output JSON file
 
 processCSV(inputFilePath, outputJsonPath);
+// https://www.linkedin.com/search/results/people/?geoUrn=%5B%22103186832%22%2C%22106447486%22%5D&industry=%5B%2280%22%2C%2211%22%2C%226%22%2C%221862%22%5D&keywords=marketing&network=%5B%22F%22%5D&origin=FACETED_SEARCH&sid=7nO&titleFreeText=(%22CEO%22%20OR%20%22Founder%22%20OR%20%22Investor%22)%20

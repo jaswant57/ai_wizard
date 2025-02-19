@@ -1,27 +1,22 @@
-import {
-  AIMessage,
-  BaseMessage,
-  HumanMessage,
-  SystemMessage,
-  ToolMessage,
-} from "@langchain/core/messages";
-import { tool } from "@langchain/core/tools";
-import { object, z } from "zod";
-import { ChatOpenAI } from "@langchain/openai";
+import { BaseMessage, HumanMessage } from "@langchain/core/messages";
 import { StateGraph } from "@langchain/langgraph";
-import { MemorySaver, Annotation } from "@langchain/langgraph";
-import { ToolNode } from "@langchain/langgraph/prebuilt";
-import { callAutomationApi, createDynamicSchema } from "./tools";
-import { retrieverChain } from "./chain";
-import { ChatGroq } from "@langchain/groq";
+import { Annotation } from "@langchain/langgraph";
+import { data_store_sys_prompt, intent_sys_prompt } from "./utils/prompts";
 import {
-  data_store_sys_prompt,
-  intent_sys_prompt,
-  sys_message,
-} from "./prompts";
-import { dataStoreSchema, intentClassificationSchema } from "./utils/helper";
+  dataStoreSchema,
+  getLlm,
+  intentClassificationSchema,
+} from "./utils/helper";
+import {
+  automation_agent,
+  automationPreparePrompt,
+  callStructuredOutputModel,
+  shouldContinue,
+  toolNode,
+} from "./agent-logic/automation";
+import { dataStoreModel } from "./agent-logic/data-store";
 
-const StateAnnotation = Annotation.Root({
+export const StateAnnotation = Annotation.Root({
   messages: Annotation<BaseMessage[]>({
     reducer: (x, y) => x.concat(y),
   }),
@@ -34,148 +29,48 @@ const StateAnnotation = Annotation.Root({
   intent: Annotation<string>,
 });
 
-const tools = [callAutomationApi];
-const toolNode = new ToolNode(tools);
-
-// const llm = new ChatGroq({
-//   model: "llama-3.3-70b-versatile",
-//   temperature: 0,
-//   maxTokens: undefined,
-//   maxRetries: 2,
-// });
-
-const llm = new ChatOpenAI({
-  model: "gpt-4o-mini",
-  temperature: 0,
-  maxTokens: undefined,
-  maxRetries: 2,
-});
-
-const llm_with_tools = llm.bindTools(tools);
-function shouldContinue(state: typeof StateAnnotation.State) {
-  const messages = state.messages;
-  const lastMessage = messages[messages.length - 1] as AIMessage;
-
-  // If the LLM makes a tool call, then we route to the "tools" node
-  if (lastMessage.tool_calls?.length) {
-    return "tools";
-  }
-  // Otherwise, we stop (reply to the user)
-  return "__end__";
-}
-
-function conditionalNode(state: typeof StateAnnotation.State) {
-  if (state.intent === "automation") {
-    return "automationPreparePrompt";
-  } else {
-    return "data-store";
-  }
-}
-
-async function automationPreparePrompt(state: typeof StateAnnotation.State) {
-  return {
-    messages: [
-      new SystemMessage(
-        (
-          await retrieverChain(
-            state["messages"][state["messages"].length - 1].content.toString(),
-            state.firstName,
-            state.lastName,
-          )
-        ).value,
-      ),
-    ],
-  };
-}
-
-async function call_model(state: typeof StateAnnotation.State) {
-  // console.log(state);
-  return {
-    messages: [await llm_with_tools.invoke(state["messages"])],
-  };
-}
-
 async function setUserInfo(state: typeof StateAnnotation.State) {
-  const { query, firstName, lastName } = JSON.parse(
+  const { query, firstName, lastName, intent } = JSON.parse(
     state["messages"][0].content.toString(),
   );
   return {
     messages: new HumanMessage(query),
     firstName,
     lastName,
+    intent,
   };
 }
-
-function callStructuredOutputModel(
-  output: Array<ToolMessage | HumanMessage | AIMessage | SystemMessage>,
-) {
-  const jsonSchema = createDynamicSchema(output);
-  const structuredLlm = llm.withStructuredOutput(jsonSchema);
-
-  // Check if the last message is not a ToolMessage
-  if (!(output[output.length - 1] instanceof ToolMessage)) {
-    // Return content of the last message if it's not a ToolMessage
-    return output[output.length - 1].content;
+// Routes the agent to automation recommendation or data-store based on the intent
+function conditionalNode(state: typeof StateAnnotation.State) {
+  // console.log(state.intent);
+  if (state.intent === "automation") {
+    return "automation-prepare-prompt";
+  } else {
+    return "data-store";
   }
-
-  // Invoke structured output model with system prompt and messages
-  return structuredLlm.invoke([sys_message, ...output]);
 }
 
-async function intentClassification(state: typeof StateAnnotation.State) {
-  // const llm = new ChatGroq({
-  //   model: "llama-3.3-70b-versatile",
-  //   temperature: 0,
-  //   maxTokens: undefined,
-  //   maxRetries: 2,
-  // });
-  const llm = new ChatOpenAI({
-    model: "gpt-4o-mini",
-    temperature: 0,
-    maxTokens: undefined,
-    maxRetries: 2,
-  });
-  const structuredLlm = llm.withStructuredOutput(intentClassificationSchema);
-
-  const result = await structuredLlm.invoke([
-    intent_sys_prompt,
-    ...state["messages"],
-  ]);
-  console.log(result);
-  return {
-    intent: result.intent,
-  };
-}
-
-async function dataStoreModel(state: typeof StateAnnotation.State) {
-  const structuredLlm = llm.withStructuredOutput(dataStoreSchema);
-
-  const result = await structuredLlm.invoke([
-    data_store_sys_prompt,
-    ...state["messages"],
-  ]);
-  return { messages: [result] };
-}
 const workflow = new StateGraph(StateAnnotation)
-  // .addNode("intent-classification", intentClassification)
-  .addNode("automation_agent", call_model)
+  .addNode("set-user-info", setUserInfo)
+  .addNode("automation-prepare-prompt", automationPreparePrompt)
+  .addNode("automation-agent", automation_agent)
   .addNode("tools", toolNode)
+  .addEdge("__start__", "set-user-info")
+  .addEdge("automation-prepare-prompt", "automation-agent")
+  .addEdge("tools", "__end__")
+  .addConditionalEdges("automation-agent", shouldContinue)
+  .addConditionalEdges("set-user-info", conditionalNode)
   .addNode("data-store", dataStoreModel)
-  .addNode("setUserInfo", setUserInfo)
-  .addNode("automationPreparePrompt", automationPreparePrompt)
-  .addConditionalEdges("automation_agent", shouldContinue)
+  // .addNode("intent-classification", intentClassification)
   // .addConditionalEdges("intent-classification", conditionalNode)
-  .addEdge("__start__", "setUserInfo")
-  // .addEdge("setUserInfo", "intent-classification")
-  .addEdge("setUserInfo", "automationPreparePrompt")
-  .addEdge("automationPreparePrompt", "automation_agent")
-  .addEdge("tools", "__end__");
-// .addEdge("data-store", "__end__");
+  // .addEdge("set-user-info", "intent-classification")
+  .addEdge("data-store", "__end__");
 
 const app = workflow.compile();
-
+type intent = "automation" | "data-store";
 export const agent = async (
   query: string,
+  intent: intent,
   firstName?: string,
   lastName?: string,
 ): Promise<{}> => {
@@ -183,23 +78,33 @@ export const agent = async (
     query,
     firstName,
     lastName,
+    intent,
   };
 
   const inputs = JSON.stringify(inputObj);
   const output = await app.invoke({
     messages: [new HumanMessage(inputs)],
   });
-
-  // if (output["intent"] === "automation") {
-  const structuredOutput: {} = await callStructuredOutputModel(
-    output["messages"],
-  );
-  return structuredOutput;
-  // return { ...structuredOutput, intent: output["intent"] };
-  // } else {
-  //   // console.log(output);
-  //   return output;
-  // }
+  if (intent === "automation") {
+    const structuredOutput: {} = await callStructuredOutputModel(
+      output["messages"],
+    );
+    return structuredOutput;
+  } else {
+    return output;
+  }
 };
 
-// agent("I want to send an auto message in Sales navigator");
+// async function intentClassification(state: typeof StateAnnotation.State) {
+//   const llm = getLlm();
+//   const structuredLlm = llm.withStructuredOutput(intentClassificationSchema);
+
+//   const result = await structuredLlm.invoke([
+//     intent_sys_prompt,
+//     ...state["messages"],
+//   ]);
+//   console.log(result);
+//   return {
+//     intent: result.intent,
+//   };
+// }

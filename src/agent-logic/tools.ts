@@ -8,7 +8,7 @@ import {
 import { tool } from "@langchain/core/tools";
 import axios from "axios";
 import { z } from "zod";
-import { Input } from "./utils/interface";
+import { Input } from "../utils/interface";
 import dotenv from "dotenv";
 
 dotenv.config({
@@ -25,17 +25,31 @@ const inputsSchema = z.object({
   automationId: z.string(),
 });
 
+
 export const callAutomationApi = tool(
   async (input: { automationId: string }): Promise<string> => {
     try {
-      // console.log(input.automationId);
+      // Define headers for the API call
+      const headers = {
+        Authorization: `Bearer ${process.env.TEXAU_API_KEY}`,
+        "X-TexAu-Context":
+          '{"orgUserId":"66629bd200b34c7c054971ba","workspaceId":"66629be100b34c7c054971fc"}',
+      };
+      const automationId =
+        input.automationId === "64899972fbfc94d1d6"
+          ? "64899972fbfc94d1d6da88d6"
+          : input.automationId;
+      // Make the API request
       const response = await axios.request({
-        url: `https://v2-prod-api.texau.com/api/v1/public/automations/${input.automationId}`,
+        url: `https://v2-prod-api.texau.com/api/v1/public/automations/${automationId}`,
         headers: { ...headers },
         method: "get",
       });
 
+      // Extract the inputs from the response
       const inputs = response.data.data.inputs;
+
+      // Return the inputs
       return JSON.stringify(inputs);
     } catch (err) {
       console.log(`Failed to fetch automation ${input.automationId}: ${err}`);
@@ -47,7 +61,7 @@ export const callAutomationApi = tool(
   {
     name: "call_automation_api",
     description:
-      "Performs an Api Call which fetches the information about the inputs for an automation",
+      "Performs an API call which fetches the information about the inputs for an automation",
     schema: inputsSchema,
   },
 );
@@ -78,6 +92,7 @@ export function createDynamicSchema(
             "text",
             "sn-message",
             "file",
+            "thread",
           ].includes(inputType)
         ) {
           inputType = "string";
@@ -156,4 +171,18 @@ export function createDynamicSchema(
   };
 
   return jsonSchema;
+}
+
+export async function getAccounts(token: string, context: string) {
+  let config = {
+    method: "get",
+    url: "https://api.texau.com/api/v1/accounts/ui?start=0&limit=20",
+    headers: {
+      authorization: `Bearer ${token}`,
+      "x-texau-context": context,
+    },
+  };
+  const response = await axios.request(config);
+  const data = response.data;
+  return data;
 }

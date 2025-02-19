@@ -1,8 +1,21 @@
 import { Document } from "@langchain/core/dist/documents/document";
 import axios from "axios";
-import { url } from "inspector";
-import { platform } from "os";
+import { ChatOpenAI } from "@langchain/openai";
 
+export function getLlm() {
+  // const llm = new ChatGroq({
+  //   model: "llama-3.3-70b-versatile",
+  //   temperature: 0,
+  //   maxTokens: undefined,
+  //   maxRetries: 2,
+  // });
+  return new ChatOpenAI({
+    model: "gpt-4o-mini",
+    temperature: 0,
+    maxTokens: undefined,
+    maxRetries: 2,
+  });
+}
 export function formatDocs(docs: Document[]) {
   let docContent = "";
   docs.forEach((doc) => {
@@ -17,26 +30,27 @@ export function formatDocs(docs: Document[]) {
 }
 
 export async function getAutomationNameFromId(id: string) {
+
   try {
     let headers = {
       Authorization: `Bearer ${process.env.TEXAU_API_KEY}`,
       "X-TexAu-Context":
         '{"orgUserId":"66629bd200b34c7c054971ba","workspaceId":"66629be100b34c7c054971fc"}',
     };
+    const automationId =
+      id === "64899972fbfc94d1d6" ? "64899972fbfc94d1d6da88d6" : id;
     const response = await axios.request({
-      url: `https://v2-prod-api.texau.com/api/v1/public/automations/${id}`,
+      url: `https://v2-prod-api.texau.com/api/v1/public/automations/${automationId}`,
       headers: { ...headers },
       method: "get",
     });
 
     const name = response.data.data.name;
+
     return name;
   } catch (err) {
-    console.log(`Failed to fetch automation ${id}: ${err}`);
+    console.log(`Failed to fetch automation name ${id}: ${err}`);
     return "Unable to find the automation name for: " + id;
-    // return `Calling tool with arguments:\n\n${JSON.stringify(
-    //   input,
-    // )}\n\nraised the following error:\n\n${err}`;
   }
 }
 

@@ -1126,26 +1126,26 @@
       "platformId": "6307070b15bef68874a6a73c",
       "name": "Twitter Profile Scraper",
       "label": "Get the twitter profile details",
-      "description": "Extract any Profile Details on Twitter",
+      "description": "Extract any Profile Information/Details on Twitter",
       "keywords": [
-        "Twitter profile extraction",
-        "Twitter bio scraper",
-        "Extract Twitter details",
-        "Twitter username analysis"
+        "profile extraction",
+        "bio scraper",
+        "Extract details",
+        "username analysis"
       ],
       "sampleQueries": [
-        "Twitter: How to extract profile details from a Twitter account?",
-        "Twitter: Can I automate Twitter profile scraping?",
-        "Twitter: What tool to use for Twitter account data extraction?",
-        "Twitter: Steps for retrieving profile information from Twitter",
-        "Twitter: Guide to scrape bio from a Twitter user"
+        "How to extract profile details from a Twitter account?",
+        "Can I automate Twitter profile scraping?",
+        "What tool to use for Twitter account data extraction?",
+        "Steps for retrieving profile information from Twitter",
+        "Guide to scrape bio from a Twitter user"
       ],
       "alternateNames": [
-        "Twitter: Profile Extractor",
-        "Twitter: Account Detail Scraper",
-        "Twitter: Bio Information Grabber",
-        "Twitter: User Info Retriever",
-        "Twitter: Social Handle Details Extractor"
+        "Twitter Profile Extractor",
+        "Twitter Account Detail Scraper",
+        "Twitter Bio Information Grabber",
+        "Twitter User Info Retriever",
+        "Twitter Social Handle Details Extractor"
       ]
     },
     {
@@ -1153,14 +1153,8 @@
       "platformId": "6307070b15bef68874a6a73c",
       "name": "Twitter Profile Tweets Export",
       "label": "Extract the Tweets of a Profile",
-      "description": "Export any Profile Tweets on Twitter",
-      "keywords": [
-        "tweets export",
-        "Tweets extraction",
-        "tweets data scraping",
-        "Profile tweets download",
-        "Twitter content export"
-      ],
+      "description": "Export Tweets from a specific Twwitter Profile",
+      "keywords": ["tweets", "Profile tweets download"],
       "sampleQueries": [
         "How to export all tweets from a Twitter account?",
         "Can I download tweets from a specific profile?",
@@ -1228,26 +1222,20 @@
       "platformId": "6307070b15bef68874a6a73c",
       "name": "Twitter Auto Retweet",
       "label": "Auto Re-Tweet",
-      "description": "An automation tool designed to automatically retweet posts on Twitter that match specified criteria or hashtags, aiding in content amplification and engagement.",
-      "keywords": [
-        "Twitter retweet",
-        "auto retweet",
-        "tweet amplification",
-        "content sharing"
-      ],
+      "description": "An automation tool designed to automatically retweet posts on Twitter",
+      "keywords": ["Twitter retweet", "auto retweet", "tweet amplification"],
       "sampleQueries": [
         "How do I set up auto retweet on Twitter?",
         "What's the best tool for Twitter auto retweet?",
         "Can I retweet tweets automatically on Twitter?",
         "How does Twitter auto retweet work?",
-        "Is there a way to auto retweet certain hashtags on Twitter?"
+        "Is there a way to auto retweet certain posts on Twitter?"
       ],
       "alternateNames": [
         "Twitter AutoShare",
         "Twitter Retweet Bot",
         "Auto Retweet for Twitter",
-        "Twitter Auto Repost",
-        "Twitter Content Amplifier"
+        "Twitter Auto Repost"
       ]
     },
     {
@@ -1284,28 +1272,27 @@
       "platformId": "6307070b15bef68874a6a73c",
       "name": "Twitter Followers/Following Export",
       "label": "Twitter Followers/Following Extractor",
-      "description": "Export any Profile Followers/Following on Twitter",
+      "description": "The automation exports the following or followers details of a profile on Twitter",
       "keywords": [
         "followers extraction",
         "following list download",
-        "social media analytics",
-        "Twitter data export",
         "follower management"
       ],
       "sampleQueries": [
+        "Hey, I need to get the following details of some Twitter profiles. How can I do it?",
         "How to export followers list on Twitter?",
         "How to export following list on Twitter?",
         "How can I download my followers on Twitter?",
         "How can I download my following on Twitter?",
         "What tool can export Twitter following lists?",
         "Is there a way to get Twitter followers in CSV?",
-        "How do I extract follower data from Twitter?"
+        "How do I extract follower data from Twitter?",
+        "Hey, I need help extracting the following details from a list of Twitter profiles. Any suggestions?"
       ],
       "alternateNames": [
         "Twitter Follower List Exporter",
         "Twitter Following Data Extractor",
-        "Export Twitter Followers Tool",
-        "Extract Twitter Network Information"
+        "Export Twitter Followers Tool"
       ]
     },
     {
@@ -1428,18 +1415,15 @@
       "name": "Twitter Auto Follow",
       "label": "Twitter Auto Follow Profile",
       "description": "Auto Follow any Profile on Twitter",
-      "keywords": [
-        "follow Twitter accounts",
-        "Twitter following increase",
-        "auto-follow bot",
-        "auto follow"
-      ],
+      "keywords": ["follow", "auto-follow bot", "auto follow"],
       "sampleQueries": [
-        "How do I use Twitter Auto Follow?",
-        "Explain how Twitter Auto Follow works on Twitter.",
-        "What are the best practices for using Twitter Auto Follow?",
+        "How do I use TexAu to follow some twitter profile urls",
+        "Explain how can i follow alot of profiles on twitter",
+        "What are the best practices for following users on Twitter?",
         "Can I automatically follow back users on Twitter?",
-        "Is Twitter Auto Follow safe to use on Twitter?"
+        "Is Twitter Auto Follow safe to use on Twitter?",
+        "How to follow profiles on twitter",
+        "I have a list of profiles on Twitter and want to follow each of them. How can I do this?"
       ],
       "alternateNames": [
         "Auto-follow bot for Twitter",
@@ -1591,13 +1575,12 @@
       "platformId": "64267ae1dbfc2b4d1fa6628d",
       "name": "Sales Navigator Lead Scraper",
       "label": "Sales Navigator Lead Details",
-      "description": "Extract Full Profile Details on Sales Navigator",
+      "description": "Extract Full Profile Details of leads on Sales Navigator",
       "keywords": [
         "leads extraction",
         "lead details",
         "full profile data",
-        "contact information",
-        "B2B leads"
+        "contact information"
       ],
       "sampleQueries": [
         "How to extract lead details using LinkedIn Sales Navigator?",
@@ -1752,7 +1735,7 @@
       "platformId": "6307070b15bef68874a6a73c",
       "name": "Twitter Tweet Scraper",
       "label": "Twitter Post Details",
-      "description": "Extract Full Details of a Tweet",
+      "description": "Extract Full Details of a particular Tweet",
       "keywords": [
         "tweet extraction",
         "Twitter data scraping",
@@ -1762,14 +1745,15 @@
       "sampleQueries": [
         "What are the details of this tweet on Twitter?",
         "Can you show me the full information of a Twitter post?",
-        "Extract metadata from a Twitter tweet",
-        "Get detailed analytics for this tweet on Twitter",
-        "How can I scrape information from a specific Twitter post?"
+        "Extract data from a Twitter tweet",
+        "Hey, I need to fetch information on over 1000 tweets from Twitter.",
+        "Get detailed data for this tweet on Twitter",
+        "How can I scrape information from a specific Twitter tweet?"
       ],
       "alternateNames": [
         "Tweet Information Extractor Twitter",
         "Twitter Post Data Fetcher Twitter",
-        "Tweet Metadata Scraper Twitter",
+        "Tweet Scraper Twitter",
         "Twitter Post Analyzer Twitter",
         "Tweet Details Mining Twitter"
       ]
@@ -2241,7 +2225,7 @@
         "How can I add multiple users to a Twitter list?",
         "What is the easiest way to add my followers on a Twitter list?",
         "How does the Twitter People List Builder work?",
-        "Can I add a profile to my custom lists on Twitter to organize my followers?",
+        "Can I add a profile to my custom lists on Twitter to organize my twitter network?",
         "How to manage Twitter lists efficiently?",
         "What tools help in adding people into Twitter lists?"
       ],
@@ -2483,7 +2467,7 @@
       "platformId": "64c3959178d7c9cda49fb9d9",
       "name": "Reddit Post Commenters Export",
       "label": "Reddit Post Commenters Export",
-      "description": "Export Reddit Post Comments and Profiles",
+      "description": "Export Reddit Post Comments from the Posts",
       "keywords": [
         "Reddit comments export",
         "Reddit comment analytics",
@@ -2648,7 +2632,7 @@
       "platformId": "64267ae1dbfc2b4d1fa6628d",
       "name": "Sales Navigator Account Search Export",
       "label": "Export Accounts",
-      "description": "Extract Companies from Sales Navigator Account Search Results",
+      "description": "Extract Company Profiles from Sales Navigator Account Search Results",
       "keywords": ["Sales Navigator", "account extraction", "Sales leads"],
       "sampleQueries": [
         "How to export accounts from Sales Navigator to a CSV?",
@@ -2804,28 +2788,23 @@
       "platformId": "64dd8dedd703b27977181abb",
       "name": "Product Hunt Product Contributors Export",
       "label": "Product Hunt Product Contributors Export",
-      "description": "Get the List of Product Hunt Post Contributors (Hunter, Maker, Commenter and Upvoter)",
+      "description": "Get the List of Contributors of a Product in Product Hunt(Hunter, Maker, Commenter and Upvoter)",
       "keywords": [
-        "Product Hunt contributors",
-        "Product Hunt lists",
-        "Hunter details",
-        "Maker insights",
-        "Commenter data",
-        "Upvoter analysis"
+        "Product contributors",
+        "post contributors",
+        "contributors data"
       ],
       "sampleQueries": [
-        "How to export Product Hunt hunters?",
-        "List of upvoters on Product Hunt post?",
-        "Who are the commenters on a Product Hunt product?",
-        "Can I get the maker info from Product Hunt?",
+        "How to export Product Hunt hunters and makers?",
         "Retrieve all contributors for a Product Hunt launch?",
-        "Find hunter and maker details from Product Hunt?"
+        "Find hunter and maker details from Product Hunt?",
+        "Hello! I have a dataset of products in a CSV file and need to track down their contributors. Any suggestions on how to achieve this?"
       ],
       "alternateNames": [
-        "Product Hunters Export Tool",
+        "Product Hunters Contributors Export Tool",
         "Contributors Export on Product Hunt",
         "PH Contributor List Generator",
-        "PH Post Participant Exporter"
+        "PH Post Contributors Exporter"
       ]
     },
     {
@@ -2986,7 +2965,7 @@
       "platformId": "64267ae1dbfc2b4d1fa6628d",
       "name": "Sales Navigator Lead List Export",
       "label": "Sales Navigator Lead List Member Extractor",
-      "description": "Extract Profiles Lead Lists from Sales Navigator",
+      "description": "Extract your Lead Lists that you saved Sales Navigator",
       "keywords": [
         "lead extraction",
         "leads",
@@ -2995,16 +2974,15 @@
       ],
       "sampleQueries": [
         "How do I extract lead lists from Sales Navigator?",
-        "What tool can I use to export lead prospects from Sales Navigator?",
-        "Can I automate the extraction of leads from  Sales Navigator?",
-        "What's the best way to get my Sales Navigator leads onto a spreadsheet?",
+        "What tool can I use to export lead list from Sales Navigator?",
+        "Can I automate the extraction of leads lists from  Sales Navigator?",
+        "What's the best way to get my Sales Navigator leads list onto a spreadsheet?",
         "How do I download my lead list from Sales Navigator?"
       ],
       "alternateNames": [
-        "Sales Navigator Export Tool",
-        "Sales Navigator Leads Downloader",
-        "Sales Export Automation",
-        "Sales Navigator Data Extractor",
+        "Sales Navigator List Export Tool",
+        "Sales Navigator Leads List Downloader",
+        "Sales Navigator List Export Automation",
         "Sales Navigator List Puller"
       ]
     },
@@ -3288,7 +3266,8 @@
         "Show me the Twitter lists this account is subscribed to.",
         "Can I download my Twitter subscribed lists?",
         "Export subscribed lists for a Twitter profile.",
-        "List the names of all Twitter lists I'm subscribed to."
+        "List the names of all Twitter lists I'm subscribed to.",
+        "Hey, can you help me pull all the lists a Twitter profile is following?"
       ],
       "alternateNames": [
         "Twitter list subscriptions",
@@ -3359,15 +3338,14 @@
         "YouTube data extraction",
         "video metadata scraping",
         "YouTube video details",
-        "video information scraper",
-        "content analysis tool"
+        "video information scraper"
       ],
       "sampleQueries": [
         "How to scrape video details from YouTube?",
-        "YouTube Video Scraper",
         "Extract YouTube video metadata",
         "Get YouTube video information",
-        "Scrape video details from YouTube"
+        "Scrape video details from YouTube",
+        "I have a list of video urls in my google sheet, I want to scrape their details"
       ],
       "alternateNames": [
         "YouTube Video Collector",
@@ -3565,19 +3543,14 @@
       "platformId": "65150ee6efb0b869501a232a",
       "name": "YouTube Channel Videos Scraper",
       "label": "Export Channel Videos",
-      "description": "Extract YouTube Channel Videos",
-      "keywords": [
-        "channel videos data extraction",
-        "Channel video list",
-        "channel "
-      ],
+      "description": "Extracts YouTube Videos from the particular Channel",
+      "keywords": ["channel videos data extraction", "Channel video list"],
       "sampleQueries": [
         "How to scrape video data from a YouTube channel?",
         "YouTube Channel videos extracting tool?",
         "i want to scrape video details on youtube for my youtube channel",
         "Guide to export YouTube channel videos data to CSV",
         "Automate channel video data collection from YouTube",
-        "YouTube channel content extraction",
         "Export all videos from a YouTube channel easily"
       ],
       "alternateNames": [
@@ -3593,7 +3566,7 @@
       "platformId": "64267ae1dbfc2b4d1fa6628d",
       "name": "Sales Navigator Lead Search Export",
       "label": "Export Leads",
-      "description": "Extract Profiles from Sales Navigator Lead Search Results",
+      "description": "Extract Lead Profiles from Sales Navigator Lead Search Results",
       "keywords": [
         "Sales Navigator leads",
         "LinkedIn profile extraction",
@@ -3608,7 +3581,10 @@
         "Extract profiles using Sales Navigator",
         "How can I automate lead extraction from Sales Navigator?",
         "Best practices for exporting Sales Navigator searches",
-        "Guide to automate Sales Navigator results export"
+        "Guide to automate Sales Navigator results export",
+        "I want to export all the leads named 'John' from Sales navigator",
+        "I want to extract profiles related to Marketing from Sales navigator",
+        "Hello, I’d like to pull 100 profiles using 'Infosys' as the company filter in Sales Navigator. How can I do this?"
       ],
       "alternateNames": [
         "Sales Nav Leads Exporter Tool",
@@ -3792,7 +3768,8 @@
         "What are the benefits of using Twitter auto messages?",
         "Can I send automated DMs on Twitter?",
         "How does Twitter auto messaging work?",
-        "Is it possible to personalize auto DMs on Twitter?"
+        "Is it possible to personalize auto DMs on Twitter?",
+        "I have a list of profiles in a Google Sheet and need to forward a message to them on Twitter. Please help."
       ],
       "alternateNames": [
         "Twitter DM automation",
@@ -3971,13 +3948,13 @@
       "platformId": "6307070b15bef68874a6a73c",
       "name": "Twitter Direct Messages Export",
       "label": "Twitter Direct Messages Export",
-      "description": "Extract Messages from a Specific Thread",
+      "description": "Extract Direct Messages Messages from a Specific Twitter Thread",
       "keywords": [
         "Twitter messages export",
-        "direct message thread download",
+        "direct message thread",
         "Twitter DMs archive",
         "conversation extraction Twitter",
-        "DM backup Twitter"
+        "messages"
       ],
       "sampleQueries": [
         "How to export my Twitter DMs?",
@@ -4027,7 +4004,7 @@
       "platformId": "6307070b15bef68874a6a73c",
       "name": "Twitter Thread Export",
       "label": "Twitter Thread Export",
-      "description": "Unroll and Export Full Threads on Twitter",
+      "description": "Unroll and Export Full Threads on Twitter (Not message threads)",
       "keywords": [
         "Twitter thread export",
         "thread unroll",
@@ -4190,18 +4167,13 @@
       "platformId": "64267ae1dbfc2b4d1fa6628d",
       "name": "Sales Navigator Account Scraper",
       "label": "Sales Navigator Account Details",
-      "description": "Extract Full Account Details on Sales Navigator",
-      "keywords": [
-        "account scraping",
-        "profile extraction",
-        "account data mining",
-        "LinkedIn account details"
-      ],
+      "description": "Extract Full Account Details of a Company Sales Navigator",
+      "keywords": ["account", "company", "details"],
       "sampleQueries": [
-        "Get full account details from Sales Navigator",
+        "Get full account details of a company from Sales Navigator",
         "Extract account information with Sales Navigator",
-        "Gather insights from Sales Navigator account",
-        "Show full details of an account using Sales Navigator",
+        "Gather insights from a Sales Navigator account",
+        "Show full details of a company account using Sales Navigator",
         "Fetch business profile information on Sales Navigator"
       ],
       "alternateNames": [
@@ -4365,7 +4337,8 @@
         "How to schedule tweets using Twitter Auto Post?",
         "Can I set daily auto tweets on Twitter Auto Post?",
         "Does Twitter Auto Post support media uploads?",
-        "How to automate my tweets using Twitter Auto Post?"
+        "How to automate my tweets using Twitter Auto Post?",
+        "Hey, I have a list of tweets in a CSV file and need to post them on Twitter. Any suggestions?"
       ],
       "alternateNames": [
         "Twitter Scheduled Posting",
@@ -4469,14 +4442,14 @@
         "Twitter lists",
         "list extraction",
         "Twitter search tools",
-        "list management"
+        "lists export"
       ],
       "sampleQueries": [
         "How to export Twitter lists on Twitter?",
         "Find lists on Twitter using a search query",
-        "Export Twitter list members using automation",
-        "Twitter list search export tool",
-        "Automate Twitter list search and export"
+        "Export Twitter lists using automation",
+        "I want to perform lists search on Twitter",
+        "Get me all the twitter lists related to AI"
       ],
       "alternateNames": [
         "Twitter List Extractor Twitter",
@@ -4656,12 +4629,7 @@
       "name": "Reddit Domain Search Export",
       "label": "Reddit Domain Search Export",
       "description": "Export Posted Articles from a Website on Reddit",
-      "keywords": [
-        "domain search",
-        "article export",
-        "website posts",
-        "Reddit integration"
-      ],
+      "keywords": ["domain search", "article export", "website posts"],
       "sampleQueries": [
         "How to export articles posted from a specific domain on Reddit?",
         "Can I retrieve all articles from example.com posted on Reddit?",
@@ -4909,7 +4877,7 @@
       "platformId": "64267ae1dbfc2b4d1fa6628d",
       "name": "Sales Navigator Account List Export",
       "label": "Sales Navigator Account List Company Extractor",
-      "description": "Extract Profiles Lead Lists from Sales Navigator",
+      "description": "Extract Profiles Accounts Lists from Sales Navigator",
       "keywords": ["account list", "profile export", "B2B sales"],
       "sampleQueries": [
         "How can I use Sales Nav to export an account list?",
@@ -4929,26 +4897,20 @@
       "platformId": "64267ae1dbfc2b4d1fa6628d",
       "name": "Sales Navigator Lead List Creator",
       "label": "Sales Navigator Lead List Creator",
-      "description": "Create Profile Lead Lists and Save Them on Sales Navigator",
-      "keywords": [
-        "lead generation",
-        "lead lists",
-        "business development",
-        "B2B sales"
-      ],
+      "description": "Create Profile Lead Lists and Save the list on Sales Navigator",
+      "keywords": ["lead", "lists", "creator", "maker"],
       "sampleQueries": [
         "How to create a lead list on Linkedin Sales Navigator?",
-        "What are the steps to save profiles in Sales Navigator?",
+        "What are the steps to create a lead list in Sales Navigator?",
         "Can I automate lead list creation?",
         "How do I set up a lead list on Sales Navigator?",
-        "What is the process to build a profile lead list on Sales Navigator?"
+        "What is the process to make a profile lead list on Sales Navigator?"
       ],
       "alternateNames": [
         "Lead List Builder",
-        "Sales Lead Organizer",
+        "Sales Lead Creator",
         "Sales Navigator Profile Collector",
-        "Prospect List Creator",
-        "Sales Navigator Data Sifter"
+        "Prospect List Creator"
       ]
     },
     {
@@ -4991,11 +4953,11 @@
       "keywords": ["List Subscribers", "Subscriber List", "export subscribers"],
       "sampleQueries": [
         "How do I export Twitter list subscribers?",
-        "Can I download Twitter list followers?",
+        "Can I download Twitter list subscribers?",
         "What tool can I use to export subscribers from Twitter lists?",
         "Methods to export user data from Twitter lists?",
         "How to get a CSV of Twitter list subscribers?",
-        "Export followers from a Twitter list easily"
+        "Export subscribers from a Twitter list easily"
       ],
       "alternateNames": [
         "Twitter List Member Extraction",
@@ -5003,7 +4965,7 @@
         "Twitter List Subscribers Download",
         "Download Twitter List Participants",
         "Twitter List Membership Export",
-        "Extract Twitter List Followers"
+        "Extract Twitter List Subscribers"
       ]
     },
     {
@@ -6176,7 +6138,7 @@
       "platformId": "64c3959178d7c9cda49fb9d9",
       "name": "Reddit Profile Scraper",
       "label": "Reddit Profile Scraper",
-      "description": "Extract any Redditor Full Profile Details",
+      "description": "Scrapes the detail of a Reddit Profile",
       "keywords": [
         "User data extraction",
         "Reddit profile details",
