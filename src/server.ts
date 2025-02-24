@@ -3,10 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { agent } from "./main";
 import { addDocs, initializeRetriever } from "./index/vectorIndex";
-import { isRunnableToolLike } from "@langchain/core/utils/function_calling";
 import { getAutomationNameFromId } from "./utils/helper";
-import { ChatGroq } from "@langchain/groq";
 import { getAccounts } from "./agent-logic/tools";
+import { AiWizardResponse } from "./utils/interface";
 
 dotenv.config({
   path: "./.env",
@@ -27,34 +26,32 @@ app.get("/", async (req, res) => {
 
 app.post("/ai-wizard", async (req, res) => {
   try {
-    // Ensure req.body.query is defined
-    // console.log(req.body);
-    if (!req.body.query || !req.body.intent) {
+    const { query, intent, firstName, lastName } = req.body;
+
+    if (!query || !intent) {
       res.status(400).json({
         success: false,
-        error: "Query/Inteny parameter is missing in the request body.",
+        error: "Query/Intent parameter is missing in the request body.",
       });
       return;
     }
 
-    let response = await agent(
-      req.body.query,
-      req.body.intent,
-      req.body.firstName,
-      req.body.lastName,
+    const response: AiWizardResponse = await agent(
+      query,
+      intent,
+      firstName,
+      lastName,
     );
-    let name = "";
-    let automationDetails = [];
-    let otherRecommendedAutomations = [];
+
+    let name: string = "";
+    let automationDetails: string[] = [];
+    let otherRecommendedAutomations: string[] = [];
     let id = "";
     let apiResponse: any = {};
-    // @ts-ignore
-    if (response?.actionType) {
-      // @ts-ignore
-      id = response.inputs.automationId;
-      otherRecommendedAutomations =
-        // @ts-ignore
-        response.inputs.otherRecommendedAutomations;
+
+    if (response?.actionType === "automation") {
+      id = response?.inputs?.automationId ?? "";
+      otherRecommendedAutomations = response?.otherRecommendedAutomations ?? [];
 
       name = await getAutomationNameFromId(id);
 
@@ -63,12 +60,9 @@ app.post("/ai-wizard", async (req, res) => {
           getAutomationNameFromId(automationId),
         ),
       );
-
+      console.log(automationDetails);
       apiResponse = response;
-      // delete apiResponse.intent;
-    }
-    // @ts-ignore
-    else if (response?.intent === "data-store") {
+    } else if (response?.actionType === "data-store") {
       // @ts-ignore
       const messagesLength = response["messages"].length;
       apiResponse["actionType"] = "data-store";
@@ -80,6 +74,8 @@ app.post("/ai-wizard", async (req, res) => {
         " ",
         "+",
       );
+    } else {
+      apiResponse["message"] = response;
     }
     res.json({
       success: true,

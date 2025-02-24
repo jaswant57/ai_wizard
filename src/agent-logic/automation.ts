@@ -12,10 +12,11 @@ import { ChatGroq } from "@langchain/groq";
 import { sys_message } from "./../utils/prompts";
 import { getLlm } from "./../utils/helper";
 import { StateAnnotation } from "../main";
+import { AiWizardResponse } from "../utils/interface";
 
-export function callStructuredOutputModel(
+export async function callStructuredOutputModel(
   output: Array<ToolMessage | HumanMessage | AIMessage | SystemMessage>,
-) {
+): Promise<AiWizardResponse> {
   const llm = new ChatOpenAI({
     model: "gpt-4o-mini",
     temperature: 0,
@@ -29,11 +30,17 @@ export function callStructuredOutputModel(
   // Check if the last message is not a ToolMessage
   if (!(output[output.length - 1] instanceof ToolMessage)) {
     // Return content of the last message if it's not a ToolMessage
-    return output[output.length - 1].content;
+    return {
+      actionType: "message",
+      text: output[output.length - 1].content.toString(),
+    };
   }
 
-  // Invoke structured output model with system prompt and messages
-  return structuredLlm.invoke([sys_message, ...output]);
+  // Invoke structured output model and wait for response
+  const response = await structuredLlm.invoke([sys_message, ...output]);
+
+  // Ensure response matches AiWizardResponse type
+  return response as AiWizardResponse; // <-- Type assertion
 }
 
 export function shouldContinue(state: typeof StateAnnotation.State) {

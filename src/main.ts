@@ -15,6 +15,7 @@ import {
   toolNode,
 } from "./agent-logic/automation";
 import { dataStoreModel } from "./agent-logic/data-store";
+import { AiWizardResponse } from "./utils/interface";
 
 export const StateAnnotation = Annotation.Root({
   messages: Annotation<BaseMessage[]>({
@@ -73,7 +74,7 @@ export const agent = async (
   intent: intent,
   firstName?: string,
   lastName?: string,
-): Promise<{}> => {
+): Promise<AiWizardResponse> => {
   const inputObj = {
     query,
     firstName,
@@ -85,10 +86,12 @@ export const agent = async (
   const output = await app.invoke({
     messages: [new HumanMessage(inputs)],
   });
+
   if (intent === "automation") {
-    const structuredOutput: {} = await callStructuredOutputModel(
+    const structuredOutput: AiWizardResponse = await callStructuredOutputModel(
       output["messages"],
     );
+
     return structuredOutput;
   } else {
     return output;

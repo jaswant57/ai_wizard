@@ -25,7 +25,6 @@ const inputsSchema = z.object({
   automationId: z.string(),
 });
 
-
 export const callAutomationApi = tool(
   async (input: { automationId: string }): Promise<string> => {
     try {
@@ -131,6 +130,10 @@ export function createDynamicSchema(
         type: "string",
         description: "actionType will always be automation",
       },
+      text: {
+        type: "string",
+        description: "A greeting text explaining the user about the automation",
+      },
       inputs: {
         type: "object",
         description: "Inputs of the automation",
@@ -144,27 +147,17 @@ export function createDynamicSchema(
             description: "Source of the input data",
             enum: ["direct-input", "csv", "google-sheet"],
           },
-          text: {
-            type: "string",
-            description:
-              "A greeting text explaining the user about the automation",
-          },
-          otherRecommendedAutomations: {
-            type: "array",
-            description: "Other Recommended Automations",
-            items: {
-              type: "string",
-              description: "Automation ID of the recommended automation",
-            },
-          },
           ...properties,
         },
-        required: [
-          "automationId",
-          "text",
-          "inputSource",
-          "otherRecommendedAutomations",
-        ],
+        required: ["automationId", "inputSource"],
+      },
+      otherRecommendedAutomations: {
+        type: "array",
+        description: "Other Recommended Automations",
+        items: {
+          type: "string",
+          description: "Automation ID of the recommended automation",
+        },
       },
     },
     required: ["actionType", "inputs"],
