@@ -80,7 +80,7 @@ platformId: Map the provided platform name to its corresponding platformId (see 
 startDate: A timestamp in the format YYYY-MM-DDTHH:mm:ss.sssZ (e.g., 2025-02-04T05:03:00.000Z).
 endDate: A timestamp in the format YYYY-MM-DDTHH:mm:ss.sssZ (e.g., 2025-02-22T05:03:00.000Z).
 connectedAccountId: Do not include this parameter under any circumstances.
-platformOperationId: Operation Id of the automation
+platformOperationId: Operation Id of the automation (If the user mentions a specific automation from the list below, use this parameter instead of q)
 
 Platform Mapping:
 (Use the exact IDs provided, without modification.)
