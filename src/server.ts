@@ -6,6 +6,7 @@ import { addDocs, initializeRetriever } from "./index/vectorIndex";
 import { getAutomationNameFromId } from "./utils/helper";
 import { getAccounts } from "./agent-logic/tools";
 import { AiWizardResponse } from "./utils/interface";
+import { dataStoreRetrieverChain } from "./agent-logic/chain";
 
 dotenv.config({
   path: "./.env",
@@ -63,13 +64,8 @@ app.post("/ai-wizard", async (req, res) => {
       console.log(automationDetails);
       apiResponse = response;
     } else if (response?.actionType === "data-store") {
-      // @ts-ignore
-      const messagesLength = response["messages"].length;
-      apiResponse["actionType"] = "data-store";
-      // @ts-ignore
-      apiResponse["dataStoreUrl"] =
-        // @ts-ignore
-        response["messages"][messagesLength - 1].url;
+      // console.log(response);
+      apiResponse["dataStoreUrl"] = response.url;
       apiResponse["dataStoreUrl"] = apiResponse["dataStoreUrl"].replaceAll(
         " ",
         "+",
@@ -132,11 +128,19 @@ app.post("/get-accounts", async (req: Request, res: Response) => {
     res.json(err);
   }
 });
+
+app.post("/data-store-retriever", async (req, res) => {
+  try {
+    const docs = await dataStoreRetrieverChain(req.body.query);
+    // const names = res.json(docs);
+    res.json({ docs });
+  } catch (err) {
+    console.log(err);
+    res.json(err);
+  }
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-// Linkedin, Recruiter Lite, Google, Youtube, Email, Product Hunt, Reddit, Website, Github, Pinterest,  TexAu Agents
-// Twitter 14

@@ -16,21 +16,25 @@ export function getLlm() {
     maxRetries: 2,
   });
 }
-export function formatDocs(docs: Document[]) {
+export function formatDocs(
+  docs: Document[],
+  rmLabel?: boolean,
+  rmPlatformId?: boolean,
+) {
   let docContent = "";
   docs.forEach((doc) => {
     const docJson = JSON.parse(doc.pageContent);
     delete docJson.keywords;
     delete docJson.sampleQueries;
     delete docJson.alternateNames;
-
+    if (rmLabel) delete docJson.label;
+    if (rmPlatformId) delete docJson.platformId;
     docContent += `\n\n ${JSON.stringify(docJson, null, 2)}`;
   });
   return docContent;
 }
 
 export async function getAutomationNameFromId(id: string) {
-
   try {
     let headers = {
       Authorization: `Bearer ${process.env.TEXAU_API_KEY}`,
@@ -53,33 +57,6 @@ export async function getAutomationNameFromId(id: string) {
     return "Unable to find the automation name for: " + id;
   }
 }
-
-export const intentClassificationSchema = {
-  title: "intent_classification",
-  name: "intent_classification",
-  description: "Classifies the intent of the given text.",
-  type: "object",
-  properties: {
-    intent: {
-      type: "string",
-      description: "Intent of the text",
-      enum: ["automation", "data-store"],
-    },
-  },
-};
-
-export const dataStoreSchema = {
-  title: "data_store_url",
-  name: "data_store_url",
-  type: "object",
-  description: "Url of the data-store page",
-  properties: {
-    url: {
-      type: "string",
-      description: "Url of the data-store page",
-    },
-  },
-};
 
 export const plaforms = `
 Linkedin : 622f03eb770f6bba0b8facaa

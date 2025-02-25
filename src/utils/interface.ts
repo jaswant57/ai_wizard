@@ -21,5 +21,6 @@ export interface AiWizardResponse {
     inputSource: string;
     twProfileUrl: string;
   };
+  url?: string;
   otherRecommendedAutomations?: string[];
 }

@@ -58,19 +58,6 @@ export function shouldContinue(state: typeof StateAnnotation.State) {
 export async function automationPreparePrompt(
   state: typeof StateAnnotation.State,
 ) {
-  // console.log({
-  //   messages: [
-  //     new SystemMessage(
-  //       (
-  //         await retrieverChain(
-  //           state["messages"][state["messages"].length - 1].content.toString(),
-  //           state.firstName,
-  //           state.lastName,
-  //         )
-  //       ).value,
-  //     ),
-  //   ],
-  // });
   return {
     messages: [
       new SystemMessage(

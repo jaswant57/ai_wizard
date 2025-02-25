@@ -1,12 +1,6 @@
 import { BaseMessage, HumanMessage } from "@langchain/core/messages";
 import { StateGraph } from "@langchain/langgraph";
 import { Annotation } from "@langchain/langgraph";
-import { data_store_sys_prompt, intent_sys_prompt } from "./utils/prompts";
-import {
-  dataStoreSchema,
-  getLlm,
-  intentClassificationSchema,
-} from "./utils/helper";
 import {
   automation_agent,
   automationPreparePrompt,
@@ -93,6 +87,9 @@ export const agent = async (
     );
 
     return structuredOutput;
+  } else if (intent === "data-store") {
+    return output.messages.pop();
+    // return output;
   } else {
     return output;
   }
