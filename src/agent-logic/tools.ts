@@ -142,6 +142,10 @@ export function createDynamicSchema(
             type: "string",
             description: "Automation Id of the automation",
           },
+          platformId: {
+            type: "string",
+            description: "Platform Id of the automation",
+          },
           inputSource: {
             type: "string",
             description: "Source of the input data",
@@ -149,7 +153,7 @@ export function createDynamicSchema(
           },
           ...properties,
         },
-        required: ["automationId", "inputSource"],
+        required: ["automationId", "inputSource", "platformId"],
       },
       otherRecommendedAutomations: {
         type: "array",
