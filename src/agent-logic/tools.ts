@@ -142,6 +142,10 @@ export function createDynamicSchema(
             type: "string",
             description: "Automation Id of the automation",
           },
+          automationName: {
+            type: "string",
+            description: "Name of the automation",
+          },
           platformId: {
             type: "string",
             description: "Platform Id of the automation",
@@ -153,14 +157,33 @@ export function createDynamicSchema(
           },
           ...properties,
         },
-        required: ["automationId", "inputSource", "platformId"],
+        required: [
+          "automationId",
+          "inputSource",
+          "platformId",
+          "automationName",
+        ],
       },
       otherRecommendedAutomations: {
         type: "array",
         description: "Other Recommended Automations",
         items: {
-          type: "string",
-          description: "Automation ID of the recommended automation",
+          type: "object",
+          description: "Recommended Automation Details",
+          properties: {
+            automationId: {
+              type: "string",
+              description: "Automation Id of the automation",
+            },
+            automationName: {
+              type: "string",
+              description: "Name of the automation",
+            },
+            platformId: {
+              type: "string",
+              description: "Platform Id of the automation",
+            },
+          },
         },
       },
     },

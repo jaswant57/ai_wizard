@@ -5,7 +5,7 @@ import { agent } from "./main";
 import { addDocs, initializeRetriever } from "./index/vectorIndex";
 import { getAutomationNameFromId } from "./utils/helper";
 import { getAccounts } from "./agent-logic/tools";
-import { AiWizardResponse } from "./utils/interface";
+import { AiWizardResponse, OtherRecommendations } from "./utils/interface";
 import { dataStoreRetrieverChain } from "./agent-logic/chain";
 
 dotenv.config({
@@ -46,22 +46,22 @@ app.post("/ai-wizard", async (req, res) => {
 
     let name: string = "";
     let automationDetails: string[] = [];
-    let otherRecommendedAutomations: string[] = [];
+    let otherRecommendedAutomations: OtherRecommendations[] = [];
     let id = "";
     let apiResponse: any = {};
 
     if (response?.actionType === "automation") {
-      id = response?.inputs?.automationId ?? "";
-      otherRecommendedAutomations = response?.otherRecommendedAutomations ?? [];
+      // id = response?.inputs?.automationId ?? "";
+      // otherRecommendedAutomations = response?.otherRecommendedAutomations ?? [];
 
-      name = await getAutomationNameFromId(id);
+      // name = await getAutomationNameFromId(id);
 
-      automationDetails = await Promise.all(
-        otherRecommendedAutomations.map((automationId: string) =>
-          getAutomationNameFromId(automationId),
-        ),
-      );
-      console.log(automationDetails);
+      // automationDetails = await Promise.all(
+      //   otherRecommendedAutomations.map((obj) =>
+      //     getAutomationNameFromId(obj.automationId),
+      //   ),
+      // );
+      // console.log(automationDetails);
       apiResponse = response;
     } else if (response?.actionType === "data-store") {
       // console.log(response);
@@ -76,15 +76,6 @@ app.post("/ai-wizard", async (req, res) => {
     res.json({
       success: true,
       apiResponse,
-      dev: {
-        mainAutomation: { id, name },
-        otherRecommendedAutomations: otherRecommendedAutomations.map(
-          (automationId: string, index: number) => ({
-            id: automationId,
-            name: automationDetails[index],
-          }),
-        ),
-      },
     });
   } catch (err) {
     console.error("Error:", err);

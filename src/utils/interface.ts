@@ -18,9 +18,16 @@ export interface AiWizardResponse {
   text: string;
   inputs?: {
     automationId: string;
+    platformId: string;
+    automationName: string;
     inputSource: string;
-    twProfileUrl: string;
   };
   url?: string;
-  otherRecommendedAutomations?: string[];
+  otherRecommendedAutomations?: OtherRecommendations[];
+}
+
+export interface OtherRecommendations {
+  automationId: string;
+  platformId: string;
+  automationName: string;
 }
