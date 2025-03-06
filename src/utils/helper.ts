@@ -24,6 +24,7 @@ export function formatDocs(
   let docContent = "";
   docs.forEach((doc) => {
     const docJson = JSON.parse(doc.pageContent);
+    delete docJson.label;
     delete docJson.keywords;
     delete docJson.sampleQueries;
     delete docJson.alternateNames;
@@ -31,6 +32,7 @@ export function formatDocs(
     if (rmPlatformId) delete docJson.platformId;
     docContent += `\n\n ${JSON.stringify(docJson, null, 2)}`;
   });
+
   return docContent;
 }
 

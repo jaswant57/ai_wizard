@@ -44,24 +44,9 @@ app.post("/ai-wizard", async (req, res) => {
       lastName,
     );
 
-    let name: string = "";
-    let automationDetails: string[] = [];
-    let otherRecommendedAutomations: OtherRecommendations[] = [];
-    let id = "";
     let apiResponse: any = {};
 
     if (response?.actionType === "automation") {
-      // id = response?.inputs?.automationId ?? "";
-      // otherRecommendedAutomations = response?.otherRecommendedAutomations ?? [];
-
-      // name = await getAutomationNameFromId(id);
-
-      // automationDetails = await Promise.all(
-      //   otherRecommendedAutomations.map((obj) =>
-      //     getAutomationNameFromId(obj.automationId),
-      //   ),
-      // );
-      // console.log(automationDetails);
       apiResponse = response;
     } else if (response?.actionType === "data-store") {
       // console.log(response);
