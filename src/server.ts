@@ -39,6 +39,10 @@ app.post("/ai-wizard", async (req, res) => {
       });
       return;
     }
+    console.log(
+      `First Name: ${firstName}, Last Name: ${lastName}, Query: ${query}, Intent: ${intent}`,
+    );
+
     const new_query = prioritizeLiIfNoPlatform(query);
 
     const response: AiWizardResponse = await agent(
