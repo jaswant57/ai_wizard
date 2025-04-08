@@ -3,7 +3,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { agent } from "./main";
 import { addDocs, initializeRetriever } from "./index/vectorIndex";
-import { getAutomationNameFromId } from "./utils/helper";
+import {
+  getAutomationNameFromId,
+  prioritizeLiIfNoPlatform,
+} from "./utils/helper";
 import { getAccounts } from "./agent-logic/tools";
 import { AiWizardResponse, OtherRecommendations } from "./utils/interface";
 import { dataStoreRetrieverChain } from "./agent-logic/chain";
@@ -36,9 +39,10 @@ app.post("/ai-wizard", async (req, res) => {
       });
       return;
     }
+    const new_query = prioritizeLiIfNoPlatform(query);
 
     const response: AiWizardResponse = await agent(
-      query,
+      new_query,
       intent,
       firstName,
       lastName,

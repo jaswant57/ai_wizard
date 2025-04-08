@@ -60,6 +60,175 @@ export async function getAutomationNameFromId(id: string) {
   }
 }
 
+export function prioritizeLiIfNoPlatform(query: string) {
+  const platforms = [
+    // LinkedIn
+    "LinkedIn",
+    "Linkdin",
+    "LinkdIn",
+    "LindedIn",
+    "Lindkin",
+    "Lindin",
+
+    // Sales Navigator
+    "Sales Navigator",
+    "SalesNav",
+    "SalesNavigtor",
+    "Sales Nav",
+    "lead",
+    "leads",
+
+    // Recruiter Lite
+    "Recruiter Lite",
+    "Recriter Lite",
+    "Recruitor Lite",
+    "Recruter Lite",
+    "Recruit Lite",
+
+    // Product Hunt
+    "Product Hunt",
+    "producthunt",
+    "ProducHunt",
+    "ProductHunt",
+    "Prodct Hunt",
+    "Product Huntt",
+    "Topic",
+    "Reviews",
+    "Review",
+    "Review",
+    "Reveiw",
+    "Reveiws",
+    "launch",
+    "launchs",
+    "launches",
+
+    // YouTube
+    "YouTube",
+    "Utube",
+    "yutube",
+    "U tube",
+    "Youtube",
+    "YoTube",
+    "Youtub",
+    "Channels",
+    "Channel",
+    "Chanels",
+    "Chanel",
+
+    // Google
+    "Google",
+    "Googel",
+    "Googl",
+    "Gogle",
+    "Maps",
+    "map",
+    "my Business",
+    "mybusiness",
+
+    // Email
+    "Email",
+    "E mail",
+    "E-mail",
+    "Emai",
+    "Emale",
+
+    // Twitter
+    "Twitter",
+    "Twiter",
+    "Twittter",
+    "Twtter",
+    "Twittr",
+    "tweets",
+    "tweet",
+    "twit",
+    "retweet",
+    "retwit",
+
+    // X
+    "X",
+
+    // Reddit
+    "Reddit",
+    "Redit",
+    "Reedit",
+    "Redit",
+    "subReddit",
+    "subReedit",
+    "subRedit",
+
+    // Pinterest
+    "Pinterest",
+    "Pintrest",
+    "Pininterest",
+    "Pinterst",
+    "pin",
+    "pins",
+    "Screenshot",
+    "Screen shot",
+    "Technographic",
+    // Slack
+    "Slack",
+    "Slak",
+    "Slck",
+    "Slaak",
+
+    // GitHub
+    "GitHub",
+    "Github",
+    "Git Hub",
+    "Githb",
+    "Githhub",
+    "Contributors",
+    "Contributers",
+    "Contribitors",
+    "Contibutors",
+    "Contriutors",
+    "Contributor",
+
+    // Repository
+    "Repository",
+    "Repositry",
+    "Reposotory",
+    "Repostory",
+    "Repo",
+    "Repositery",
+    "Repositiry",
+
+    // Stargazers
+    "Stargazers",
+    "Star gazers",
+    "Stargazer",
+    "Stargazors",
+    "Stargazrs",
+    "Stargasrs",
+    "Star gazer",
+
+    // Code
+    "Code",
+
+    // TexAu Agents
+    "TexAu Agents",
+    "TexAu",
+    "Texo Agents",
+    "TexAuAgent",
+    "TexAu Agnts",
+    "TexAu Agens",
+    "cleaner",
+    "cleaners",
+    "AI",
+    "Builder",
+    "Creator",
+  ];
+  const hasPlatform = platforms.some((platform: string) =>
+    query.toLowerCase().includes(platform.toLowerCase()),
+  );
+  if (!hasPlatform) {
+    query += " LinkedIn";
+  }
+
+  return query;
+}
+
 export const plaforms = `
 Linkedin : 622f03eb770f6bba0b8facaa
 Sales Navigator : 64267ae1dbfc2b4d1fa6628d
